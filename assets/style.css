@@ -1,4 +1,75 @@
-*{
-    background-color: rgb(127, 219, 255);
-    color: aliceblue;
+
+body {
+    background-color: rgb(127, 182, 255);
+}
+.container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 100vh; 
+   
+}
+
+.box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+    max-width: 600px;
+    height: 85vh;
+    background-color: rgb(240, 248, 255, 0.3);
+    padding: 20px;
+    border-radius: 30px;
+
+}
+
+.clock {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 400;
+    font-style: normal;    
+}
+
+.time {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+.hour {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.596);
+    font-size: 50px;
+    padding: 10px;
+    border-radius: 20px;
+    width: 80px;
+    color: rgb(255, 255, 255) 
+}
+.points {
+    font-size: 50px;
+    border-radius: 20px;
+    color: rgb(255, 255, 255); 
+}
+
+.minutes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.596);
+    font-size: 50px;
+    padding: 10px;
+    width: 80px;
+    border-radius: 20px;
+    color: rgb(255, 255, 255);  
+}
+.infoday,
+.infomonth {
+    color: rgba(0, 0, 0, 0.37);  
+    margin: 2px;
+    padding: 0;
 }
