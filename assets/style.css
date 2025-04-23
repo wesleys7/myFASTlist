@@ -1,6 +1,6 @@
-
+/*fontes usadas na logo Edu australia e yellowtail*/
 body {
-    background-color: rgb(127, 182, 255);
+    background-color: #1d2e35; /*1d2e35 or 7fb6ff*/
 }
 .container {
    display: flex;
@@ -12,6 +12,7 @@ body {
 
 .box {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: 80%;
@@ -21,6 +22,28 @@ body {
     padding: 20px;
     border-radius: 30px;
 
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+
+}
+.midle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 80%;
+}
+.imgLogo {
+    display: block;
+    width: 170px;
+}
+.footer {
+    height: 10%;
 }
 
 .clock {
