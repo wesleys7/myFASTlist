@@ -1,6 +1,6 @@
 /*fontes usadas na logo Edu australia e yellowtail*/
 body {
-    background-color: #1d2e35; /*1d2e35 or 7fb6ff*/
+    background-color: #7fb6ff; /*1d2e35 or 7fb6ff*/
 }
 .container {
    display: flex;
@@ -26,22 +26,117 @@ body {
 
 .header {
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    width: 100%;
+}
+.hLeft {
+    display: flex;
+    height: 100%;
+    width: 180px;
+    
+}
+.menuOptions {
+    display: flex;
     flex-direction: column;
+    margin-top: 25px;
+    margin-left: 20px;
+    gap:5px; 
+}
+
+.bar1, .bar2, .bar3 {
+    width: 32px;
+    height: 3px;
+    border-radius: 10px;
+    background-color: #fff;
+}
+
+.logo {
+    flex-grow: 1;
+    display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0;
-
+    height: 100%;
+    width: 100%;
+    
 }
+.imgLogo {
+    max-width: 100%;
+    max-height: 150px;
+    object-fit: contain;
+}
+.hRight {
+    width: 180px;
+    height: 100%;
+}
+
+.version {
+    font-size: small;
+    color: #ffffff70;
+}
+.version:hover {
+    color: #ffffff;
+    cursor: pointer;
+}
+
 .midle {
     display: flex;
     flex-direction: column;
     align-items: center;
     height: 80%;
+    margin: 0;
+    padding: 0;
 }
-.imgLogo {
-    display: block;
-    width: 170px;
+
+.buttonAreaNewList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    font-family: "Special Gothic Expanded One", sans-serif;
+    font-weight: 400;
+    font-style: normal; 
+    padding: 50px;
 }
+.buttonAreaNewList span {
+    padding: 5px;
+}
+.nova {
+    color: #fff;
+}
+.lista {
+    color: #deff00;
+}
+.addNewList-btn {
+    all: unset;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    cursor:pointer;
+    border: 1px solid#ffffffc7;
+    border-radius: 200px;
+    width: 75px;
+    height: 40px;
+    
+    color: #ffffffc7;
+}
+.addNewList-btn:hover {
+    border: 1px solid rgb(222, 255, 0);
+    color: #6e6e6e;
+    background-color: #ffffffc7;
+    box-shadow: 0px 0px 3px  rgba(221, 255, 0, 0.527);
+}
+
+.addNewList-btn:active {
+    border: 1px solid rgba(221, 255, 0, 0.788);
+    color: #6e6e6e;
+    background-color: #e7e5e5c7;
+    box-shadow: 0px 0px 3px  rgba(221, 255, 0, 0.527);
+}
+
 .footer {
     height: 10%;
 }
