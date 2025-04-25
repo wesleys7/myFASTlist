@@ -5,9 +5,11 @@ function updateClock() {
     let m = now.getMinutes()
 
     let daynames = ['Domingo', 'Segunda-feira', 'Terça-feira', 'Quarta-feira', 'Quinta-feira', 'Sexta-Feira', 'Sábado']
+    let cutdaynames = ['Dom.', 'Seg.', 'Ter.', 'Qua.', 'Qui.', 'Sex.', 'Sáb.']
     let monthNames = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro']
 
     let day = daynames[now.getDay()]
+    let cutday = cutdaynames[now.getDay()]
     let date = now.getDate()
     let month = monthNames[now.getMonth()]
     let year = now.getFullYear()
@@ -18,6 +20,8 @@ function updateClock() {
     document.querySelector('.hour').innerHTML = h<10? '0'+h:h
     document.querySelector('.minutes').innerHTML = m<10? '0'+m:m
     document.querySelector('.infomonth').innerHTML = `${month}, ${year}`
+
+    document.querySelector('.hclock').innerHTML = `${cutday}, ${date} de ${month} ${h<10? '0'+h:h}:${m<10? '0'+m:m}`
 
 }
 
