@@ -104,13 +104,14 @@ body {
 }
 
 .homepage {
-    display: none;
+    display: none;/* mudar entre flex e none*/
     flex-direction: column;
     align-items: center;
     height: 80%;
     width: 100%;
     margin: 0;
     padding: 0;
+    transition: transform 1s ease;
 }
 
 .buttonAreaNewList {
@@ -162,7 +163,7 @@ body {
 
 
 .boxListOptions {
-    display: flex;
+    display: flex;/*alterar entre none e flex*/
     justify-content: center;
     align-items: center;
     width: 100%;
@@ -299,12 +300,22 @@ body {
 }
 
 .fastList-Page {
-    display: flex;
+    display: flex; /*mudar entre flex e none*/
     flex-direction: column;
     /*background-color: #6e6e6e;*/
     height: 100%;
     width: 100%;
 }
+
+
+.supermarket-Page {
+    display: none; /*mudar entre flex e none*/
+    flex-direction: column;
+    /*background-color: #6e6e6e;*/
+    height: 100%;
+    width: 100%;
+}
+
 
 .hInfos {
     display: flex;
@@ -657,26 +668,36 @@ body {
     cursor: pointer;
     font-size: 18px;  
 }
-.btn-fav {
+.btn-save {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ffffffc0;
+    color: #9b9b9b; 
     width: 30px;
     height: 30px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 18px;
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' -100,
+  'opsz' 24
+}
+
+
+
 .btn-order:hover , .btn-rebuild:hover, 
-.btn-deleteAll:hover, .btn-fav:hover {
+.btn-deleteAll:hover, .btn-save:hover {
     color: #ffffffd3;
     background-color: #77777734; 
 } 
 
 .btn-order:active , .btn-rebuild:active, 
-.btn-deleteAll:active, .btn-fav:active {
+.btn-deleteAll:active, .btn-save:active {
     color: #ffffffd3;
     background-color: #77777771;
 }
@@ -695,6 +716,7 @@ body {
     color: #FFF;
     cursor: default;
 }
+
 
 
 
