@@ -6,9 +6,9 @@
     <title>myFASTlist</title>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Jura:wght@300..700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=save_as" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Jura:wght@300..700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
     <div class="overlay"></div>
@@ -120,7 +120,9 @@
                         <div class="boxPagEnd">
                             <div class="PEa0"><div class="btn-order" title="Organizar">⇅</div></div>
                             <div class="PEa1"><div class="btn-rebuild" title="refazer">↺</div></div>
-                            <div class="PEa2"><div class="btn-deleteAll" title="excluir tudo">🗑️</div></div>
+                            <div class="PEa2"><div class="btn-deleteAll" title="excluir tudo"><span class="material-symbols-outlined">
+                                delete
+                                </span></div></div>
                             <div class="PEa3"><div class="btn-save" title="salvar lista"><span class="material-symbols-outlined">
                                 save_as
                             </span></div></div>
@@ -144,14 +146,33 @@
                             <div class="btn-favorite" title="Listas favoritas">❤</div>
                         </div>
                     </div>
-                    <div class="addItensArea">
-                        <div class="boxAddItens">
-                            <div class="inputAddItens">
-                                <input type="text" name="addItens" id="addItens" maxlength="20" placeholder="digite aqui: uma terefa, um lembrete, um item, etc..." autofocus autocomplete="off">
+                    <div class="addItensArea-SM">
+                        <div class="boxAddMoreItens">
+                            <span class="material-symbols-outlined" id="btn-addmoreItens">
+                                add_circle
+                                </span></div>
+                        <div class="boxAddItens-SM">
+                            <div class="boxClose"><span class="material-symbols-outlined" id="close-SM">
+                                removeclose
+                                </span></div>
+                            <div class="boxIside-SM">
+                                <div class="inputAddItens-SM">
+                                    <input type="text" name="addItens-SM" id="addItens-SM" maxlength="20" placeholder="digite um item da sua lista aqui." autofocus autocomplete="off">
+                                </div>
+                                <div class="boxQtd"><div class="btn-less">-</div><input type="number" name="txtqtd" id="txtQtd-SM" value="1"><div class="btn-more">+</div></div>
+                                <div class="boxUnd">
+                                    <div class="boxInUnd">
+                                        <div class="und active">und</div>
+                                        <div class="pct">pct</div>
+                                        <div class="kg">kg</div>
+                                        <div class="g">g</div>
+                                    </div>
+                                </div>
+                                <div class="addIa1-SM">
+                                    <div class="btn-addItem-SM">+</div>
+                                </div>
                             </div>
-                            <div class="addIa1">
-                                <div class="btn-addItem">+</div>
-                            </div>
+                           
                         </div>
                     </div>
                     <div class="itensLength">Itens na lista 1</div>
@@ -177,7 +198,9 @@
                         <div class="boxPagEnd">
                             <div class="PEa0"><div class="btn-order" title="Organizar">⇅</div></div>
                             <div class="PEa1"><div class="btn-rebuild" title="refazer">↺</div></div>
-                            <div class="PEa2"><div class="btn-deleteAll" title="excluir tudo">🗑️</div></div>
+                            <div class="PEa2"><div class="btn-deleteAll" title="excluir tudo"><span class="material-symbols-outlined">
+                                delete
+                                </span></div></div>
                             <div class="PEa3"><div class="btn-save" title="Salvar lista">
                                 <span class="material-symbols-outlined">
                                     save_as

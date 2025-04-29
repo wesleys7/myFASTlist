@@ -300,7 +300,7 @@ body {
 }
 
 .fastList-Page {
-    display: flex; /*mudar entre flex e none*/
+    display: none; /*mudar entre flex e none*/
     flex-direction: column;
     /*background-color: #6e6e6e;*/
     height: 100%;
@@ -309,7 +309,7 @@ body {
 
 
 .supermarket-Page {
-    display: none; /*mudar entre flex e none*/
+    display: flex; /*mudar entre flex e none*/
     flex-direction: column;
     /*background-color: #6e6e6e;*/
     height: 100%;
@@ -657,6 +657,14 @@ body {
     font-size: 18px;
 }
 
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 100,
+  'GRAD' -25,
+  'opsz' 20
+}
+
 .btn-deleteAll {
     display: flex;
     justify-content: center;
@@ -666,14 +674,14 @@ body {
     height: 30px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 18px;  
+    font-size: 18px;
 }
+
 .btn-save {
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #ffffffc0;
-    color: #9b9b9b; 
     width: 30px;
     height: 30px;
     border-radius: 8px;
@@ -683,7 +691,7 @@ body {
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
-  'wght' 400,
+  'wght' 300,
   'GRAD' -100,
   'opsz' 24
 }
@@ -717,6 +725,259 @@ body {
     cursor: default;
 }
 
+.addItensArea-SM {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    padding-bottom: 3px;
+    /*background-color: #7fb6ff;*/
+}
+
+.boxAddItens-SM {
+    display: flex; /*mudar para flex ou none*/
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    background-color: #ffffff;
+    width: 100%;
+    height: 80%;
+    padding: 10px;
+    border-radius: 5px;
+}
+.boxAddMoreItens {
+    display: none; /*mudar para flex ou none*/
+}
+#btn-addmoreItens {
+    color: #fff;
+    cursor: pointer;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 100,
+    'GRAD' -100,
+    'opsz' 24
+}
+
+#btn-addmoreItens:hover {
+    color:#e0e0e0;
+    font-size: 30px;
+}
+
+#btn-addmoreItens:active {
+    color:#cfcece;
+    font-size: 30px;
+}
+
+.inputAddItens-SM {
+    width: 100%;
+    /*background-color: #9cb401;*/
+}
+
+#addItens-SM {
+    border: 1px solid #97979731;
+    border-radius: 3px;
+    background: none;
+    text-align: center;
+    width: 98%;
+    height: 30px;
+    outline: none;
+    font-family: "Special Gothic Expanded One", 'Segoe UI';
+    font-size: 14px;
+}
+
+#addItens-SM::placeholder {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: left;
+    font-style: italic;
+    color: #e0e0e0;
+}
+
+.boxClose {
+    display: flex;
+    justify-content: end;
+    align-items: start;
+    width: 100%;
+    padding-right: 5px;
+    /*background-color: #c2e7b6;*/
+}
+#close-SM {
+    cursor: pointer;
+    color: #77777779;
+    font-size: 18px;
+}
+#close-SM:hover {
+    color: #96969679;
+    font-size: 18px;
+}
+
+#close-SM:active {
+    color: #55555579;
+    font-size: 18px;
+}
+
+.boxIside-SM {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 75%;
+    gap:5px;
+    /*background-color: #91afbd;*/
+}
+.addIa1-SM {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Special Gothic Expanded One", 'Segoe UI';
+    /*background-color: #4869ff;*/
+}
+
+.boxQtd {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    /*background-color: #6e6e6e;*/
+    gap: 2px;
+}
+#txtQtd-SM {
+    border: 1px solid #97979731;
+    border-radius: 3px;
+    background: none;
+    text-align: center;
+    width: 40px;
+    height: 30px;
+    outline: none;
+    font-family:'Segoe UI';
+    font-size: 14px;
+}
+
+#txtQtd-SM::-webkit-outer-spin-button,
+#txtQtd-SM::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.btn-less {
+    text-align: center;
+    color: #fff;
+    background-color: #4869ff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.btn-more {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+    background-color: #4869ff;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.boxUnd {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*background-color: #777777;*/
+}
+
+.boxInUnd {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 1px solid #97979731;
+    width: 130px;
+    height: 18px;
+    border-radius: 15px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 11px;
+    overflow: hidden;
+}
+
+
+
+.und {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-right: 1px solid #97979731;
+    padding-left: 5px;
+    padding-right: 2px;
+    height: 100%;
+    width: 25%;
+    cursor: pointer;
+}
+
+.und.active {
+    background-color: #4869ff;
+    color: #FFF;
+}
+.pct {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 3px;
+    padding-right: 3px;
+    border-right: 1px solid #97979731;
+    height: 100%;
+    width: 25%;
+    cursor: pointer;
+}
+
+.kg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border-right: 1px solid #97979731;
+    padding: 2px;
+    height: 100%;
+    width: 25%;
+    cursor: pointer;
+}
+
+.g {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding-left: 0px;
+    padding-right: 3px;
+    height: 100%;
+    width: 25%;
+    cursor: pointer;
+}
+
+
+
+.btn-addItem-SM {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #deff00;
+    color: #9cb401;
+    font-size: 24px;
+    width: 26px;
+    height: 26px;
+    border-radius: 13px;
+    cursor: pointer;
+}
+.btn-addItem-SM:hover {
+    background-color: #c8e700;
+    color: #ddff00;
+}
+
+.btn-addItem-SM:active {
+    background-color: #b5d100;
+    color: #ddff00;
+}
 
 
 
