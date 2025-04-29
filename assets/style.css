@@ -104,7 +104,7 @@ body {
 }
 
 .homepage {
-    display: none;/* mudar entre flex e none*/
+    display: flex;/* mudar entre flex e none*/
     flex-direction: column;
     align-items: center;
     height: 80%;
@@ -309,7 +309,7 @@ body {
 
 
 .supermarket-Page {
-    display: flex; /*mudar entre flex e none*/
+    display: none; /*mudar entre flex e none*/
     flex-direction: column;
     /*background-color: #6e6e6e;*/
     height: 100%;
@@ -318,9 +318,10 @@ body {
 
 
 .hInfos {
-    display: flex;
+    display: none; /*mudar entre flex e none*/
     justify-content: end;
     align-items: center;
+    width: 100%;
 }
 
 .hclock {
@@ -584,6 +585,25 @@ body {
     color: #FFF;
 }
 
+.btn-edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center; 
+    cursor: pointer;
+    background-color:#ffffffc0;
+    color: #777777;
+    width: 22px;
+    height: 22px;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+.btn-edit:hover {
+    background-color: rgba(0, 140, 255, 0.3);
+    color: #FFF;
+}
+
 .btn-delete {
     display: flex;
     justify-content: center;
@@ -777,7 +797,7 @@ body {
     border: 1px solid #97979731;
     border-radius: 3px;
     background: none;
-    text-align: center;
+    text-align: left;
     width: 98%;
     height: 30px;
     outline: none;
@@ -827,6 +847,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     font-family: "Special Gothic Expanded One", 'Segoe UI';
     /*background-color: #4869ff;*/
 }
@@ -836,7 +857,7 @@ body {
     justify-content: start;
     align-items: center;
     /*background-color: #6e6e6e;*/
-    gap: 2px;
+    gap: 5px;
 }
 #txtQtd-SM {
     border: 1px solid #97979731;
@@ -877,6 +898,11 @@ body {
     height: 20px;
     border-radius: 50%;
     cursor: pointer;
+}
+
+.btn-less:active, 
+.btn-more:active {
+    background-color: #3b56cf;
 }
 
 .boxUnd {
@@ -964,9 +990,9 @@ body {
     background-color: #deff00;
     color: #9cb401;
     font-size: 24px;
-    width: 26px;
-    height: 26px;
-    border-radius: 13px;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
     cursor: pointer;
 }
 .btn-addItem-SM:hover {
@@ -979,5 +1005,38 @@ body {
     color: #ddff00;
 }
 
+.elementsItens-SM {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 20px
+}
 
+.btn-addItem-SM-txt {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 9px;
+    color: #77777748;
+}
+
+.boxlength-SM {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 15px;
+}
+
+.itensLength-SM {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: start;
+    font-size: 11px;
+    color: #ffffffde; 
+}
+
+.itensLengthcar-SM {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    justify-content: end;
+    font-size: 11px;
+    color: #ffffffde; 
+}
 

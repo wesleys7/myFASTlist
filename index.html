@@ -33,7 +33,7 @@
                 
             </div>
             <div class="midle">
-                <div class="homepage">
+                <div class="homepage"> <!--home page-->
                     <div class="buttonAreaNewList">
                         <span class="nova">CRIAR</span>
                         <button class= "addNewList-btn" type="button">+</button>
@@ -53,10 +53,11 @@
                                 <div class="favorites">❤</div> 
                                 <span>favoritos</span> 
                             </div>
+                            <!--    customTest
                             <div class="area-4">
                                 <div class="customList">✎</div>
                                 <span>personalizar</span> 
-                            </div>                         
+                            </div>-->                         
                         </div>
                     </div>
                     
@@ -73,10 +74,11 @@
     
                     </div>
                 </div>
+                <div class="hInfos">
+                    <div class="hclock"></div>
+                </div>
                 <div class="fastList-Page"> <!--página da lista rápida-->
-                    <div class="hInfos">
-                        <div class="hclock"></div>
-                    </div>
+                    
                     <div class="header-fastListPage">
                         <div class="title-fl">lista rápida+</div>
                         <div class="afL1">
@@ -131,9 +133,6 @@
                     </div>
                 </div>
                 <div class="supermarket-Page"><!--página da lista de mercado-->
-                    <div class="hInfos">
-                        <div class="hclock"></div>
-                    </div>
                     <div class="header-fastListPage">
                         <div class="title-fl">Mercado🛒 </div>
                         <div class="afL1">
@@ -159,23 +158,31 @@
                                 <div class="inputAddItens-SM">
                                     <input type="text" name="addItens-SM" id="addItens-SM" maxlength="20" placeholder="digite um item da sua lista aqui." autofocus autocomplete="off">
                                 </div>
-                                <div class="boxQtd"><div class="btn-less">-</div><input type="number" name="txtqtd" id="txtQtd-SM" value="1"><div class="btn-more">+</div></div>
-                                <div class="boxUnd">
-                                    <div class="boxInUnd">
-                                        <div class="und active">und</div>
-                                        <div class="pct">pct</div>
-                                        <div class="kg">kg</div>
-                                        <div class="g">g</div>
+                                <div class="elementsItens-SM">
+                                    <div class="boxQtd"><div class="btn-less">-</div><input type="number" name="txtqtd" id="txtQtd-SM" value="1"><div class="btn-more">+</div></div>
+                                    <div class="boxUnd">
+                                        <div class="boxInUnd">
+                                            <div class="und active">und</div>
+                                            <div class="pct">pct</div>
+                                            <div class="kg">kg</div>
+                                            <div class="g">g</div>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="addIa1-SM">
-                                    <div class="btn-addItem-SM">+</div>
+                                    <div class="addIa1-SM">
+                                        <div class="btn-addItem-SM">+</div>
+                                        <span class="btn-addItem-SM-txt">add item</span>
+                                    </div>
                                 </div>
                             </div>
                            
                         </div>
                     </div>
-                    <div class="itensLength">Itens na lista 1</div>
+                    <div class="boxlength-SM">
+                        <div class="itensLength-SM">Itens na lista 1</div>
+                        <div class="itensLengthcar-SM">Itens no carrinho 0</div>
+                    </div>
+                    
+
                     <div class="listArea">
 
 
@@ -189,6 +196,7 @@
                                 <div class="itemtxt">--</div>
                                 <div class="lIa1"><div class="btn-checked" title="ok">✔</div></div>
                                 <div class="lIa2"><div class="btn-alert" title="atenção">!</div></div>
+                                <div class="lIa4"><div class="btn-edit" title= "editar">✎</div></div>
                                 <div class="lIa3"><div class="btn-delete" title="deletar"><div class="midlebar"></div></div></div>
                             </div>  
                         </div>
