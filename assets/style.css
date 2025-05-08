@@ -1,7 +1,7 @@
 /*fontes usadas na logo Edu australia e yellowtail*/
 body {
 
-    background-color: #7fb6ff; /*1d2e35 or 7fb6ff*/
+    background-color: #1d2e35; /*1d2e35 or 7fb6ff*/
 }
 .overlay {
     position: fixed;
@@ -48,7 +48,7 @@ body {
     
 }
 .menuOptions {
-    display: flex;
+    display: flex;  
     flex-direction: column;
     align-items: center;
     margin-top: 25px;
@@ -57,6 +57,154 @@ body {
     cursor:pointer; 
 }
 
+.menuListOptions {
+    position: fixed;
+    display: flex; /*mudar para none ou flex*/
+    align-items: start;
+    z-index: 1005;
+    background-color: #ffffffc0;
+    color: #6e6e6e;
+    border-radius: 10px;
+    width: 120px;
+    height: 150px;
+    gap: 20px;
+    padding-top: 40px;
+    padding-left: 15px;
+    margin-top: 15px;
+    margin-left: 10px;
+    
+}
+
+.theme,
+.about {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    border-bottom: 1px solid #6e6e6e28;
+    padding: 10px;
+    width: 80%;
+    height: 15px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.theme:active, 
+.about:active {
+    color: #494949;
+}
+
+.themecolors {
+    position: absolute;
+    display: none;  /*mudar para none ou flex*/
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 160px;
+    height: 103px;
+    z-index: 1006;
+    margin-left: 90px;
+    margin-top: -45px;
+    padding: 5px;
+    padding-bottom: 50px;
+    gap: 10px;
+    border-radius: 10px;
+    background-color: #FFF;
+    overflow: hidden;
+}
+
+.aboutinfo {
+    position: absolute;
+    display: flex;  /*mudar para none ou flex*/
+    justify-content: center;
+    align-items: center;
+    text-align: justify;
+    flex-direction: column;
+    width: 231px;
+    height: 150px;
+    z-index: 1006;
+    margin-left: 90px;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: small;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #FFF;
+    overflow: hidden;  
+}
+
+.boxcolors {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 35px;
+}
+.defaultColor,.color1 ,.color2,.color3,
+.color4,.color5 {
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.defaultColor:hover,.color1:hover ,.color2:hover,.color3:hover,
+.color4:hover,.color5:hover {
+    box-shadow: inset 0 0 0 2px rgb(255, 255, 255)
+}
+
+.saveColor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 13px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+}
+
+.saveColor:hover {
+    font-size: 15px;
+}
+
+.saveColor:active {
+    color: #353535;
+}
+.defaultColor {
+    background-color: #7fb6ff;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+}
+.color1 {
+    background-color: #204c85;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+}
+.color2 {
+    background-color: #1d2e35;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-right: 1px solid #fff;
+}
+.color3 {
+    background-color: #838567;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+.color4 {
+    background-color: #b38bff;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+
+.color5 {
+    background-color: #f6b2ff;
+    border-top: 1px solid #fff;
+    border-left: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+    border-right:1px solid #fff;
+}
 .bar1, .bar2, .bar3 {
     width: 32px;
     height: 3px;
@@ -163,7 +311,7 @@ body {
 
 
 .boxListOptions {
-    display: flex;/*alterar entre none e flex*/
+    display: none;/*alterar entre none e flex*/
     justify-content: center;
     align-items: center;
     width: 100%;
