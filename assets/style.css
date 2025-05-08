@@ -1,6 +1,9 @@
 /*fontes usadas na logo Edu australia e yellowtail*/
-body {
-
+html, body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
     background-color: #1d2e35; /*1d2e35 or 7fb6ff*/
 }
 .overlay {
@@ -18,6 +21,7 @@ body {
    justify-content: center;
    align-items: center;
    height: 95vh;
+   width: 100%;
 }
 
 .box {
@@ -59,7 +63,7 @@ body {
 
 .menuListOptions {
     position: fixed;
-    display: flex; /*mudar para none ou flex*/
+    display: none; /*mudar para none ou flex*/
     align-items: start;
     z-index: 1005;
     background-color: #ffffffc0;
@@ -73,6 +77,16 @@ body {
     margin-top: 15px;
     margin-left: 10px;
     
+}
+
+.btn-closeMenuListOptions {
+    position: absolute;
+    margin-top: -34px;
+    margin-left: -5px;
+    border: 1px solid;
+    width: 30px;
+    height: 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .theme,
@@ -116,7 +130,7 @@ body {
 
 .aboutinfo {
     position: absolute;
-    display: flex;  /*mudar para none ou flex*/
+    display: none;  /*mudar para none ou flex*/
     justify-content: center;
     align-items: center;
     text-align: justify;
@@ -133,12 +147,32 @@ body {
     overflow: hidden;  
 }
 
+.btn-closeAboutInfo {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    width: 70px;
+    height: 25px;
+    border-radius: 10px;
+    border: 1px solid #49494949;
+    cursor: pointer;
+}
+
+.btn-closeAboutInfo:hover {
+    color: #6e6e6e;
+}
+
+.btn-closeAboutInfo:active {
+    color: #a5a4a4;
+}
+
 .boxcolors {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    margin-top: 35px;
+    margin-top: 47px;
 }
 .defaultColor,.color1 ,.color2,.color3,
 .color4,.color5 {
@@ -160,6 +194,7 @@ body {
     font-size: 13px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     cursor: pointer;
+    padding: 2px;
 }
 
 .saveColor:hover {
@@ -252,7 +287,7 @@ body {
 }
 
 .homepage {
-    display: flex;/* mudar entre flex e none*/
+    display: none;/* mudar entre flex e none*/
     flex-direction: column;
     align-items: center;
     height: 80%;
@@ -1188,3 +1223,107 @@ body {
     color: #ffffffde; 
 }
 
+.favorites-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    /*background-color: #353535;*/
+}
+
+.header-favoritePage {
+    display: flex;
+    align-items: center;
+    /*background-color: #7fb6ff;*/
+    height: 50px;
+    width: 90%;
+    gap: 8px;
+}
+
+.FavoriteArea {
+    display: flex;
+    width: 90%;
+    height: 100%;
+    margin-top: 10px;
+}
+
+
+.FavoriteboxListArea {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 40px;
+    /*background-color: #ff9900;*/
+}
+
+.FavoritelistItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.5);
+    width: 100%;
+    height: 35px;
+    padding: 0px 8px 0px 25px;
+    border-radius: 5px;
+}
+
+.lIc1 {
+    padding: 0px 3px 0px 3px;
+}
+.lIc2 {
+    padding: 0px 3px 0px 3px;
+}
+
+.btn-FavSelected {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    cursor: pointer;
+    background-color:#ffffffc0;
+    color: #777777;
+    width: 22px;
+    height: 22px;
+    border-radius: 8px;
+}
+
+.btn-FavSelected:hover {
+    background-color: rgba(39, 233, 0, 0.3);
+    color: #fff;
+
+}
+.btn-FavSelected:active {
+    background-color: rgba(39, 233, 0, 0.692);
+    color: #fff;
+
+}
+.btn-FavDelete {
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    cursor: pointer;
+    background-color:#ffffffc0;
+    color: #777777;
+    width: 22px;
+    height: 22px;
+    border-radius: 8px;
+}
+
+.btn-FavDelete:hover {
+    background-color: rgba(233, 0, 0, 0.3);
+    color: #fff;
+}
+
+.btn-FavDelete:active {
+    background-color: rgba(233, 0, 0, 0.623);
+    color: #fff;
+}
+
+
+.FavItemtxt {
+    flex-grow: 1;
+    font-family: "Special Gothic Expanded One", 'Segoe UI';
+    font-size: 14px;
+}
