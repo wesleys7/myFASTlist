@@ -287,7 +287,7 @@ html, body {
 }
 
 .homepage {
-    display: none;/* mudar entre flex e none*/
+    display: flex;/* mudar entre flex e none*/
     flex-direction: column;
     align-items: center;
     height: 80%;
@@ -1224,7 +1224,7 @@ html, body {
 }
 
 .favorites-page {
-    display: flex;
+    display: none; /*mudar para none ou flex*/
     flex-direction: column;
     align-items: center;
     justify-content: center;
