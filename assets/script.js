@@ -3,7 +3,8 @@
 const menuOptions = document.querySelector('.menuOptions')
 const menuListOptions = document.querySelector('.menuListOptions')
 const btnCloseMenuListOptions = document.querySelector('.btn-closeMenuListOptions')
-const overlay = document.querySelector('.overlayTransp')
+const overlayTransp = document.querySelector('.overlayTransp')
+const overlay = document.querySelector('.overlay')
 const theme = document.querySelector('.theme')
 const themecolors = document.querySelector('.themecolors')
 const body = document.querySelector('body')
@@ -14,23 +15,44 @@ const color3 = document.querySelector('.color3')
 const color4 = document.querySelector('.color4')
 const color5 = document.querySelector('.color5')
 const saveColor = document.querySelector('.saveColor')
+const about = document.querySelector('.about')
+const aboutinfo = document.querySelector('.aboutinfo')
+const btnCloseAboutInfo = document.querySelector('.btn-closeAboutInfo')
+const addNewListBtn = document.querySelector('.addNewList-btn')
+const boxListOptions = document.querySelector('.boxListOptions')
+const buttonAreaNewList = document.querySelector('.buttonAreaNewList')
+const fastList = document.querySelector('.fastList')
+const homepage = document.querySelector('.homepage')
+const hInfos = document.querySelector('.hInfos')
+const fastListPage = document.querySelector('.fastList-Page')
+const addItens = document.querySelector('#addItens')
+const btnHome = document.querySelectorAll('.btn-home')
+const btnFavorite = document.querySelector('.btn-favorite')
+const favoritesPage = document.querySelector('.favorites-page')
 
 
 
 //EventListener
 
 menuOptions.addEventListener('click', () => {
-   menuListOptions.style.display = menuListOptions.style.display === 'flex' ? 'none':'flex'
-   overlay.style.display = 'flex'
+    menuListOptions.style.display = menuListOptions.style.display === 'flex' ? 'none':'flex'
+    if(fastListPage.style.display == 'flex') {
+        overlay.style.display = 'flex'
+    } else {
+        overlayTransp.style.display = 'flex'
+    }
+      
 })
 btnCloseMenuListOptions.addEventListener('click', () => {
     menuListOptions.style.display = menuListOptions.style.display === 'flex' ? 'none':'flex'
+    overlayTransp.style.display = 'none'
     overlay.style.display = 'none'
     themecolors.style.display = 'none'
 })
 
 theme.addEventListener('click', () => {
     themecolors.style.display = themecolors.style.display === 'flex' ? 'none':'flex'
+    aboutinfo.style.display = 'none'
 })
 
 defaultColor.addEventListener('click', () => {
@@ -56,9 +78,64 @@ saveColor.addEventListener('click', () => {
     const bgSelected = getComputedStyle(body).backgroundColor
     body.style.backgroundColor = bgSelected
     localStorage.setItem('selectedColor', bgSelected)
+    themecolors.style.display = 'none' 
+})
+
+about.addEventListener('click', () => {
+    aboutinfo.style.display = aboutinfo.style.display === 'flex'? 'none' : 'flex'
     themecolors.style.display = 'none'
 })
 
+btnCloseAboutInfo.addEventListener('click', () => {
+    aboutinfo.style.display = 'none'
+})
+
+overlay.addEventListener('click', () => {
+    if (fastListPage.style.display == 'flex') {
+
+    } else {
+        boxListOptions.style.display = 'none'
+        overlay.style.display = 'none'
+        buttonAreaNewList.style.padding = '50px 50px 50px 50px'
+        boxListOptions.style.transform = 'translateY(-8px)'
+    }
+    
+  
+})
+
+addNewListBtn.addEventListener('click', () => {
+    overlay.style.display = 'flex'
+    buttonAreaNewList.style.padding = '50px 50px 0px 50px'
+    boxListOptions.style.display = 'flex'
+    setInterval(()=>{
+        boxListOptions.style.transform = 'translateY(-8px)'
+    }, 50)
+})
+
+fastList.addEventListener('click', () => {
+    boxListOptions.style.display = 'none'
+    buttonAreaNewList.style.padding = '50px 50px 50px 50px'
+    overlay.style.display = 'none'
+    homepage.style.display = 'none'
+    hInfos.style.display = 'flex'
+    fastListPage.style.display = 'flex'
+    setTimeout(()=> {addItens.focus()}, 50)
+
+})
+
+btnHome.forEach (button => { button.addEventListener ('click', () => {
+    fastListPage.style.display = 'none'
+    favoritesPage.style.display = 'none'
+    hInfos.style.display = 'none'
+    homepage.style.display = 'flex'
+})
+})
+
+btnFavorite.addEventListener('click', () =>{
+    fastListPage.style.display = 'none'
+    favoritesPage.style.display = 'flex'
+
+})
 //functions 
 
 function updateBackground () {
