@@ -25,10 +25,15 @@ const fastList = document.querySelector('.fastList')
 const homepage = document.querySelector('.homepage')
 const hInfos = document.querySelector('.hInfos')
 const fastListPage = document.querySelector('.fastList-Page')
-const addItens = document.querySelector('#addItens')
+let addItens = document.querySelector('#addItens')
 const btnHome = document.querySelectorAll('.btn-home')
 const btnFavorite = document.querySelector('.btn-favorite')
 const favoritesPage = document.querySelector('.favorites-page')
+const btnAddItem = document.querySelector('.btn-addItem')
+const listArea = document.querySelector('.listArea')
+const msgAlert = document.querySelector('.msgAlert')
+let contFast = 0
+let idFast = 0
 
 
 
@@ -136,7 +141,46 @@ btnFavorite.addEventListener('click', () =>{
     favoritesPage.style.display = 'flex'
 
 })
-//functions 
+
+btnAddItem.addEventListener('click', addItemFast)
+addItens.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter') {
+        addItemFast()
+    }
+})
+//functions
+
+function addItemFast() {
+    let itensLength = document.querySelector('.itensLength')
+    msgAlert.style.display = 'none'
+    let txtValue = addItens.value.trim()
+    if (txtValue !== '') {
+        let item = document.createElement('div')
+        item.className = 'boxListArea'
+        item.id = `item${idFast}`
+        item.innerHTML = `
+            <div class="listItem">
+                                <div class="section" title="mover item">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+                                <div class="itemtxt">${txtValue}</div>
+                                <div class="lIa1"><div class="btn-checked" title="ok">✔</div></div>
+                                <div class="lIa2"><div class="btn-alert" title="atenção">!</div></div>
+                                <div class="lIa3"><div class="btn-delete" title="deletar"><div class="midlebar"></div></div></div>
+                            </div>
+        `
+        listArea.appendChild(item)
+        addItens.value = ''
+        addItens.focus()
+        idFast++
+        contFast++
+        itensLength.innerHTML = `Itens na lista ${contFast}`
+    } else {
+        alert('digite um item antes de clicar em adicionar.')
+    }
+}
 
 function updateBackground () {
     const savedColor = localStorage.getItem('selectedColor')

@@ -733,6 +733,14 @@ html, body {
     border-radius: 10px; 
 }
 
+.msgAlert {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #FFF;
+}
 .boxListArea {
     display: flex;
     justify-content: center;
