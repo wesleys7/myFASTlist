@@ -31,9 +31,15 @@ const btnFavorite = document.querySelector('.btn-favorite')
 const favoritesPage = document.querySelector('.favorites-page')
 const btnAddItem = document.querySelector('.btn-addItem')
 const listArea = document.querySelector('.listArea')
+let arrayItens = []
+let arrayItensCopy = []
 const msgAlert = document.querySelector('.msgAlert')
 let contFast = 0
 let idFast = 0
+const btnOrder = document.querySelector('.btn-order')
+const btnRebuild = document.querySelector('.btn-rebuild')
+let sortListOn = false
+
 
 
 
@@ -148,39 +154,15 @@ addItens.addEventListener('keydown', (e) => {
         addItemFast()
     }
 })
+
+btnOrder.addEventListener('click', sortList)
+
+btnRebuild.addEventListener('click', rebuild)
+
+
+
 //functions
 
-function addItemFast() {
-    let itensLength = document.querySelector('.itensLength')
-    msgAlert.style.display = 'none'
-    let txtValue = addItens.value.trim()
-    if (txtValue !== '') {
-        let item = document.createElement('div')
-        item.className = 'boxListArea'
-        item.id = `item${idFast}`
-        item.innerHTML = `
-            <div class="listItem">
-                                <div class="section" title="mover item">
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                </div>
-                                <div class="itemtxt">${txtValue}</div>
-                                <div class="lIa1"><div class="btn-checked" title="ok">✔</div></div>
-                                <div class="lIa2"><div class="btn-alert" title="atenção">!</div></div>
-                                <div class="lIa3"><div class="btn-delete" title="deletar"><div class="midlebar"></div></div></div>
-                            </div>
-        `
-        listArea.appendChild(item)
-        addItens.value = ''
-        addItens.focus()
-        idFast++
-        contFast++
-        itensLength.innerHTML = `Itens na lista ${contFast}`
-    } else {
-        alert('digite um item antes de clicar em adicionar.')
-    }
-}
 
 function updateBackground () {
     const savedColor = localStorage.getItem('selectedColor')
@@ -225,3 +207,109 @@ setInterval(()=>{
     let points = document.querySelector('.points')
     points.style.visibility = (points.style.visibility ==='hidden' ? 'visible':'hidden')
 }, 1000)
+
+
+
+
+
+function addItemFast() {
+    let itensLength = document.querySelector('.itensLength')
+    msgAlert.style.display = 'none'
+    let txtValue = addItens.value.trim()
+    if (txtValue !== '') {
+        const item = document.createElement('div')
+        item.className = 'boxListArea'
+        item.id = `item${idFast}`
+        item.innerHTML = `
+            <div class="listItem">
+                                <div class="section" title="mover item">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+                                <div class="itemtxt">${txtValue}</div>
+                                <div class="lIa1"><div class="btn-checked" title="ok">✔</div></div>
+                                <div class="lIa2"><div class="btn-alert" title="atenção">!</div></div>
+                                <div class="lIa3"><div class="btn-delete" title="deletar"><div class="midlebar"></div></div></div>
+                            </div>
+        `
+        addItens.value = ''
+        addItens.focus()
+        idFast++
+        contFast++
+        itensLength.innerHTML = `Itens na lista ${contFast}`
+        arrayItens.push(`${txtValue}`)
+        arrayItensCopy = [...arrayItens]
+        listArea.appendChild(item)
+        
+    } else {
+        alert('digite um item antes de clicar em adicionar.')
+    }
+    
+}
+
+function sortList () {
+    if(sortListOn == false) {
+        if(arrayItens.length == 0) {
+        alert('Ainda não há itens na lista para serem organizados')
+        } else {
+        sortListOn = true
+        const orderedItems = arrayItensCopy.sort()
+        listArea.innerHTML = ''
+        btnOrder.style.backgroundColor = '#71f550c0'
+        btnOrder.style.color = '#fff'
+        orderedItems.forEach((itemvalue, i) => {
+            const item = document.createElement('div')
+            item.className = 'boxListArea'
+            item.id = `item${i}`
+            item.innerHTML = `
+                <div class="listItem">
+                                    <div class="section" title="mover item">
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                        <div class="dot"></div>
+                                    </div>
+                                    <div class="itemtxt">${itemvalue}</div>
+                                    <div class="lIa1"><div class="btn-checked" title="ok">✔</div></div>
+                                    <div class="lIa2"><div class="btn-alert" title="atenção">!</div></div>
+                                    <div class="lIa3"><div class="btn-delete" title="deletar"><div class="midlebar"></div></div></div>
+                                </div>
+            `
+            listArea.appendChild(item)
+        })
+    }
+    } else {
+      if(arrayItens.length == 0) {
+        alert('Ainda não há itens na lista para serem organizados')
+        } else {
+            sortListOn = false
+            listArea.innerHTML = ''
+            btnOrder.style.backgroundColor = '#ffffffc0'
+            btnOrder.style.color = '#777777'
+            arrayItens.forEach((itemvalue, i) => {
+                const item = document.createElement('div')
+                item.className = 'boxListArea'
+                item.id = `item${i}`
+                item.innerHTML = `
+                    <div class="listItem">
+                                        <div class="section" title="mover item">
+                                            <div class="dot"></div>
+                                            <div class="dot"></div>
+                                            <div class="dot"></div>
+                                        </div>
+                                        <div class="itemtxt">${itemvalue}</div>
+                                        <div class="lIa1"><div class="btn-checked" title="ok">✔</div></div>
+                                        <div class="lIa2"><div class="btn-alert" title="atenção">!</div></div>
+                                        <div class="lIa3"><div class="btn-delete" title="deletar"><div class="midlebar"></div></div></div>
+                                    </div>
+                `
+                listArea.appendChild(item)
+            })
+        }  
+    }  
+}
+
+function rebuild () {
+   
+}
+
