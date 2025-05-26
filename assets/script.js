@@ -34,6 +34,8 @@ const listArea = document.querySelector('.listArea')
 let arrayItens = []
 let arrayItensCopy = []
 let arrayItensChecked = []
+let arrayItensProblem = []
+let arrayItensProblemBackup = []
 const msgAlert = document.querySelector('.msgAlert')
 let contFast = 0
 let idFast = 0
@@ -41,6 +43,7 @@ const btnOrder = document.querySelector('.btn-order')
 const btnRebuild = document.querySelector('.btn-rebuild')
 let sortListOn = false
 const listItem = document.querySelector('.listItem')
+
 
 
 
@@ -152,11 +155,13 @@ btnFavorite.addEventListener('click', () =>{
 
 btnAddItem.addEventListener('click', () => {
     addItemFast()
+    renderListProblem()
     renderListChecked()
 })
 addItens.addEventListener('keydown', (e) => {
     if(e.key === 'Enter') {
         addItemFast()
+        renderListProblem()
         renderListChecked()
     }
 })
@@ -176,12 +181,88 @@ listArea.addEventListener('click', (e) => {
         arrayItensCopy = [...arrayItens]
         listArea.innerHTML = ''
         renderList()
+        renderListProblem()
         renderListChecked()
         contFast--
         renderItensLength()
-        console.log(arrayItens)
+        console.log(arrayItensChecked)
+    
+    } else if(e.target.classList.contains('btn-alert')) {
 
-    }
+        const div = e.target.closest('.boxListArea')
+        const text = div.querySelector('.itemtxt').textContent.trim()
+        const index = arrayItens.indexOf(text)
+        arrayItensProblem.push(arrayItens[index])
+        arrayItensProblemBackup = [...arrayItensProblem]
+        arrayItens.splice(index, 1)
+        arrayItensCopy = [...arrayItens]
+        listArea.innerHTML = ''
+        renderList()
+        renderListProblem()
+        renderListChecked()
+        console.log(arrayItensProblemBackup)
+
+    } else if (e.target.classList.contains('btn-reverse')) {
+
+            const div = e.target.closest('.boxListArea')
+            const text = div.querySelector('.itemtxt').textContent.trim()
+            const index = arrayItensChecked.indexOf(text)
+            
+            if (arrayItensProblemBackup.includes(text)) {
+                
+                arrayItensProblem.push(arrayItensChecked[index])
+                arrayItensChecked.splice(index, 1)
+                arrayItensProblemBackup.splice(index, 1)
+                arrayItensCopy = [...arrayItens]
+                listArea.innerHTML = ''
+                renderList()
+                renderListProblem()
+                renderListChecked()
+                contFast++
+                renderItensLength()
+
+            } else {
+                arrayItens.push(arrayItensChecked[index])
+                arrayItensChecked.splice(index, 1)
+                arrayItensCopy = [...arrayItens]
+                listArea.innerHTML = ''
+                renderList()
+                renderListProblem()
+                renderListChecked()
+                contFast++
+                renderItensLength()
+            }
+            
+            
+    } else if (e.target.classList.contains('btn-checkedP')) {
+
+        const div = e.target.closest('.boxListArea')
+        const text = div.querySelector('.itemtxt').textContent.trim()
+        const index = arrayItensProblem.indexOf(text)
+        arrayItensChecked.push(arrayItensProblem[index])
+        arrayItensProblemBackup = [...arrayItensProblem]
+        arrayItensProblem.splice(index, 1)
+        arrayItensCopy = [...arrayItens]
+        listArea.innerHTML = ''
+        renderList()
+        renderListProblem()
+        renderListChecked()
+        contFast--
+        renderItensLength()
+
+    } else if (e.target.classList.contains('btn-reverseP')) {
+
+        const div = e.target.closest('.boxListArea')
+        const text = div.querySelector('.itemtxt').textContent.trim()
+        const index = arrayItensProblem.indexOf(text)
+        arrayItens.push(arrayItensProblem[index])
+        arrayItensProblem.splice(index, 1)
+        arrayItensCopy = [...arrayItens]
+        listArea.innerHTML = ''
+        renderList()
+        renderListProblem()
+        renderListChecked()
+    } 
 })
 
 
@@ -334,6 +415,32 @@ function renderListChecked() {
         })
 }
 
+function renderListProblem() {
+    arrayItensProblem.forEach((itemValue, i) => {
+        const item = document.createElement('div')
+        item.className = 'boxListArea'
+        item.id = `item${i}`
+        item.draggable = 'true'
+        item.innerHTML = `
+            <div class="listItemProblem">
+                                <div class="section" title="mover item">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+                                <span>⚠️</span>
+                                <div class="itemtxt">${itemValue}</div>
+                                <div class="lIa1"><div class="btn-checkedP" title="ok">✔</div></div>
+                                <div class="lIa3"><div class="btn-reverseP" title="refazer">↺</div></div>
+                                <div class="lIa3"><div class="btn-delete" title="deletar"><div class="midlebar"></div></div></div>
+                            </div>
+        `
+        listArea.appendChild(item)
+            
+        })
+}
+
+
 function sortList () {
     
     if(sortListOn == false) {
@@ -346,6 +453,7 @@ function sortList () {
         btnOrder.innerHTML = 'A-Z↓<span class = "sBtn-order">ON</span>'
         listArea.innerHTML = ''
         renderList()
+        renderListProblem()
         renderListChecked()
         
     }
@@ -360,21 +468,10 @@ function sortList () {
             btnOrder.innerHTML = 'A-Z↓'
             listArea.innerHTML = ''
             renderList()
+            renderListProblem()
             renderListChecked()
             
         }  
     }
 }
 
-/*const btnChecked = document.querySelectorAll('.btn-checked')
-
-btnChecked.addEventListener('click', ()=> {
-    /*document.querySelectorAll('.boxListArea').forEach(div => {
-        const text = div.querySelector('.itemtxt').textContent.trim()
-        const index = arrayItens.indexOf(text)
-        arrayItensChecked.push(arrayItens[index])
-        arrayItens.splice(index, 1)
-        renderList()
-    })*/
-    /*alert('funcionou')
-})*/
