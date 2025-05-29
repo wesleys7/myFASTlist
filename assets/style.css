@@ -1482,3 +1482,76 @@ html, body {
     font-family: "Special Gothic Expanded One", 'Segoe UI';
     font-size: 14px;
 }
+
+.alertDelete {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.6); /* fundo escuro translúcido */
+    display: flex; /* alterna com JS */
+    justify-content: center;
+    align-items: center;
+    z-index: 1005;
+}
+
+.boxDelete {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 90%;
+    width: 300px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 5px 25px 25px 25px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.txtDelete {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    flex-direction: column;
+    color: #777777;
+    padding-bottom: 20px;
+}
+
+.boxOptionsDelete {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.deleteY {
+    background-color: rgba(241, 36, 36, 0.774);
+    border: 1px solid rgba(241, 36, 36, 0.774);
+    color: #FFF;
+    cursor: pointer;
+    width: 70px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.deleteY:active {
+    background-color: rgba(179, 14, 14, 0.774);
+}
+.deleteN {
+    border: 1px solid #777777;
+    color: #777777;
+    cursor: pointer;
+    font-weight: bold;
+    width: 70px;
+    height: 25px;
+    border-radius: 5px;
+}
+.deleteN:active {
+    background-color:#e2e2e2c0;
+}

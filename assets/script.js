@@ -36,6 +36,8 @@ let arrayItensCopy = []
 let arrayItensChecked = []
 let arrayItensProblem = []
 let arrayItensProblemBackup = []
+let arrayItensExcluded = []
+let arrauAllItensExcluded = []
 const msgAlert = document.querySelector('.msgAlert')
 let contFast = 0
 let idFast = 0
@@ -43,9 +45,9 @@ const btnOrder = document.querySelector('.btn-order')
 const btnRebuild = document.querySelector('.btn-rebuild')
 let sortListOn = false
 const listItem = document.querySelector('.listItem')
-
-
-
+const alertDelete = document.querySelector('.alertDelete')
+const midlebar = document.querySelector('.midlebar')
+let itensLength = document.querySelector('.itensLength')
 
 
 //EventListener
@@ -95,15 +97,19 @@ saveColor.addEventListener('click', () => {
     body.style.backgroundColor = bgSelected
     localStorage.setItem('selectedColor', bgSelected)
     themecolors.style.display = 'none' 
+    menuListOptions.style.display = 'none'
+    overlayTransp.style.display = 'none'
 })
 
 about.addEventListener('click', () => {
     aboutinfo.style.display = aboutinfo.style.display === 'flex'? 'none' : 'flex'
-    themecolors.style.display = 'none'
+    themecolors.style.display = 'none' 
 })
 
 btnCloseAboutInfo.addEventListener('click', () => {
     aboutinfo.style.display = 'none'
+    menuListOptions.style.display = 'none'
+    overlayTransp.style.display = 'none'
 })
 
 overlay.addEventListener('click', () => {
@@ -187,7 +193,60 @@ listArea.addEventListener('click', (e) => {
         renderItensLength()
         console.log(arrayItensChecked)
     
-    } else if(e.target.classList.contains('btn-alert')) {
+    } else if (e.target.classList.contains('btn-delete') || e.target.classList.contains('midlebar')) {
+        const item = e.target.closest('.boxListArea')
+        const text = item.querySelector('.itemtxt').textContent.trim()
+        const div = document.createElement('div')
+        div.classList = 'alertDelete'
+        div.innerHTML = `
+            <div class="boxDelete">
+                <div class="txtDelete">
+                    <p>Deseja realmente excluir esse item da lista?</p>
+                    <div class="itemtxt">${text}</div>
+                </div>
+                <div class="boxOptionsDelete">
+                    <div class="deleteY"><span class="material-symbols-outlined">
+                        delete
+                        </span>
+                    </div>
+                    <div class="deleteN">voltar</div>
+            </div>
+        `
+        listArea.appendChild(div)
+        document.querySelector('.deleteN').addEventListener('click', () => {
+            div.remove()
+        })
+        document.querySelector('.deleteY').addEventListener('click', () => {
+            
+            if (arrayItens.includes(text)) {
+                div.remove()
+                const index = arrayItens.indexOf(text)
+                arrayItensExcluded.push(text)
+                arrayItens.splice(index,1)
+                arrayItensCopy = [...arrayItens]
+                listArea.innerHTML = ''
+                renderList()
+                renderListProblem()
+                renderListChecked()
+                contFast--
+                renderItensLength()
+            } else if (arrayItensProblem.includes(text)) {
+                div.remove()
+                const index = arrayItensProblem.indexOf(text)
+                arrayItensExcluded.push(text)
+                arrayItensProblem.splice(index,1)
+                arrayItensProblemBackup = [...arrayItensProblem]
+                listArea.innerHTML = ''
+                renderList()
+                renderListProblem()
+                renderListChecked()
+                contFast--
+                renderItensLength()
+            }
+            
+        })
+
+    }   else if(e.target.classList.contains('btn-alert')) {
 
         const div = e.target.closest('.boxListArea')
         const text = div.querySelector('.itemtxt').textContent.trim()
@@ -333,8 +392,13 @@ function addItemFast() {
 }
 
 function renderItensLength() {
-    let itensLength = document.querySelector('.itensLength')
-    itensLength.innerHTML = `Itens na lista ${contFast}`  
+    itensLength.innerHTML = `Itens na lista ${contFast}` 
+    if (contFast < 1 && arrayItensChecked.length == 0) {
+        const div = document.createElement('div')
+        div.classList = 'msgAlert'
+        div.innerHTML = `<p><i>Nenhum item foi adicionado ainda. Preencha o campo de texto e clique em '+' para começar sua lista, vamos lá!!  =D </i></p>`
+        listArea.appendChild(div)
+    }
 }
 
 
@@ -444,9 +508,7 @@ function renderListProblem() {
 function sortList () {
     
     if(sortListOn == false) {
-        if(arrayItens.length == 0) {
-        alert('Ainda não há itens na lista para serem organizados')
-        } else {
+       
         sortListOn = true
         btnOrder.style.backgroundColor = '#71f550c0'
         btnOrder.style.color = '#fff'
@@ -455,23 +517,32 @@ function sortList () {
         renderList()
         renderListProblem()
         renderListChecked()
+        renderItensLength()
         
-    }
     } else {
-      if(arrayItens.length == 0) {
-        alert('Ainda não há itens na lista para serem organizados')
-        } else {
-            sortListOn = false
-            listArea.innerHTML = ''
-            btnOrder.style.backgroundColor = '#ffffffc0'
-            btnOrder.style.color = '#777777'
-            btnOrder.innerHTML = 'A-Z↓'
-            listArea.innerHTML = ''
-            renderList()
-            renderListProblem()
-            renderListChecked()
+
+        sortListOn = false
+        listArea.innerHTML = ''
+        btnOrder.style.backgroundColor = '#ffffffc0'
+        btnOrder.style.color = '#777777'
+        btnOrder.innerHTML = 'A-Z↓'
+        listArea.innerHTML = ''
+        renderList()
+        renderListProblem()
+        renderListChecked()
+        renderItensLength()
             
-        }  
-    }
+    }  
+    
 }
 
+function openCloseModalDelete() {
+   const currentDisplay = getComputedStyle(alertDelete).display;
+
+    if (currentDisplay === 'none') {
+        alertDelete.style.display = 'flex';
+    } else {
+        alertDelete.style.display = 'none';
+    }
+    alert('rodou')
+}
