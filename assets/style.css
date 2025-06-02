@@ -676,6 +676,23 @@ html, body {
     color: #e0e0e0;
 }
 
+#txtSaveList {
+    border: none;
+    background-color: #e9f7fcbd;
+    width: 250px;
+    height: 25px;
+    border-radius: 5px;
+    outline: none;
+    font-family: "Special Gothic Expanded One", 'Segoe UI';
+    font-size: 14px;
+}
+
+#txtSaveList::placeholder {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    color: #adadad;
+}
+
 .addIa1 {
     display: flex;
     font-family: "Special Gothic Expanded One", 'Segoe UI';
@@ -1483,7 +1500,7 @@ html, body {
     font-size: 14px;
 }
 
-.alertDelete {
+.alertModal {
     position: fixed;
     top: 0;
     left: 0;
@@ -1542,6 +1559,19 @@ html, body {
 
 .deleteY:active {
     background-color: rgba(179, 14, 14, 0.774);
+}
+
+.SaveY {
+    background-color: rgba(36, 84, 241, 0.774);
+    border: 1px solid rgba(36, 84, 241, 0.774);
+    color: #FFF;
+    cursor: pointer;
+    width: 70px;
+    height: 25px;
+    border-radius: 5px;  
+}
+.SaveY:active {
+    background-color: rgba(26, 61, 179, 0.774);
 }
 .deleteN {
     border: 1px solid #777777;

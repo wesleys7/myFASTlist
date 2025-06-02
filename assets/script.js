@@ -32,6 +32,7 @@ const favoritesPage = document.querySelector('.favorites-page')
 const btnAddItem = document.querySelector('.btn-addItem')
 const listArea = document.querySelector('.listArea')
 let arrayItens = []
+let arrayItensBackup = []
 let arrayItensCopy = []
 let arrayItensChecked = []
 let arrayItensProblem = []
@@ -45,9 +46,10 @@ const btnOrder = document.querySelector('.btn-order')
 const btnRebuild = document.querySelector('.btn-rebuild')
 let sortListOn = false
 const listItem = document.querySelector('.listItem')
-const alertDelete = document.querySelector('.alertDelete')
 const midlebar = document.querySelector('.midlebar')
 let itensLength = document.querySelector('.itensLength')
+const btnDeleteAll = document.querySelector('.btn-deleteAll')
+const btnSave = document.querySelector('.btn-save')
 
 
 //EventListener
@@ -163,12 +165,15 @@ btnAddItem.addEventListener('click', () => {
     addItemFast()
     renderListProblem()
     renderListChecked()
+    arrayItensBackup = [...arrayItens]
 })
 addItens.addEventListener('keydown', (e) => {
     if(e.key === 'Enter') {
         addItemFast()
         renderListProblem()
         renderListChecked()
+        arrayItensBackup = [...arrayItens]
+        console.log(arrayItens)
     }
 })
 
@@ -191,13 +196,13 @@ listArea.addEventListener('click', (e) => {
         renderListChecked()
         contFast--
         renderItensLength()
-        console.log(arrayItensChecked)
+        console.log(arrayItens)
     
     } else if (e.target.classList.contains('btn-delete') || e.target.classList.contains('midlebar')) {
         const item = e.target.closest('.boxListArea')
         const text = item.querySelector('.itemtxt').textContent.trim()
         const div = document.createElement('div')
-        div.classList = 'alertDelete'
+        div.classList = 'alertModal'
         div.innerHTML = `
             <div class="boxDelete">
                 <div class="txtDelete">
@@ -259,7 +264,7 @@ listArea.addEventListener('click', (e) => {
         renderList()
         renderListProblem()
         renderListChecked()
-        console.log(arrayItensProblemBackup)
+        console.log(arrayItens)
 
     } else if (e.target.classList.contains('btn-reverse')) {
 
@@ -271,7 +276,6 @@ listArea.addEventListener('click', (e) => {
                 
                 arrayItensProblem.push(arrayItensChecked[index])
                 arrayItensChecked.splice(index, 1)
-                arrayItensProblemBackup.splice(index, 1)
                 arrayItensCopy = [...arrayItens]
                 listArea.innerHTML = ''
                 renderList()
@@ -299,7 +303,6 @@ listArea.addEventListener('click', (e) => {
         const text = div.querySelector('.itemtxt').textContent.trim()
         const index = arrayItensProblem.indexOf(text)
         arrayItensChecked.push(arrayItensProblem[index])
-        arrayItensProblemBackup = [...arrayItensProblem]
         arrayItensProblem.splice(index, 1)
         arrayItensCopy = [...arrayItens]
         listArea.innerHTML = ''
@@ -316,12 +319,106 @@ listArea.addEventListener('click', (e) => {
         const index = arrayItensProblem.indexOf(text)
         arrayItens.push(arrayItensProblem[index])
         arrayItensProblem.splice(index, 1)
+        arrayItensProblemBackup.splice(index, 1)
         arrayItensCopy = [...arrayItens]
         listArea.innerHTML = ''
         renderList()
         renderListProblem()
         renderListChecked()
     } 
+})
+
+btnDeleteAll.addEventListener('click', () => {
+    if(contFast < 1 && arrayItensChecked.length == 0) {
+        alert('A lista está vazia')
+    } else {
+        const div = document.createElement('div')
+        div.classList = 'alertModal'
+            div.innerHTML = `
+                <div class="boxDelete">
+                    <div class="txtDelete">
+                        <p>Deseja limpar e exluir todos os itens para começar uma nova lista?<br/><strong>Se a lista não foi salva, todos os itens serão perdidos!</strong></p>
+                    </div>
+                    <div class="boxOptionsDelete">
+                        <div class="deleteY"><span class="material-symbols-outlined">
+                            delete
+                            </span>
+                        </div>
+                        <div class="deleteN">voltar</div>
+                </div>
+            `
+        listArea.appendChild(div)
+
+        document.querySelector('.deleteN').addEventListener('click', () => {
+                div.remove()
+            })
+        document.querySelector('.deleteY').addEventListener('click', () => {
+                arrayItens = []
+                arrayItensCopy = []
+                arrayItensChecked = []
+                arrayItensProblem = []
+                arrayItensProblemBackup = []
+                arrayItensExcluded = []
+                arrauAllItensExcluded = []
+                contFast = 0
+                idFast = 0
+                renderList()
+                renderListChecked()
+                renderListProblem()
+                renderItensLength()
+            })
+    }
+    
+})
+
+btnSave.addEventListener('click', () => {
+    if(contFast < 1 && arrayItensChecked.length == 0) {
+        alert('Não há itens à serem salvos')
+    } else {
+
+        const div = document.createElement('div')
+        div.classList = 'alertModal'
+            div.innerHTML = `
+                <div class="boxDelete">
+                        <div class="txtDelete">
+                            <p>Qual nome vamos dar à sua lista para poder salvar nos favoritos? =D</p>
+                            <div class="inputSaveList"><input type="text" name="txtSaveList" id="txtSaveList" maxlength="25" placeholder="Digite aqui o nome da sua lista..." autofocus autocomplete="off"></div>
+                        </div>
+                        
+                        <div class="boxOptionsDelete">
+                            <div class="SaveY"><span class="material-symbols-outlined">
+                                    save_as
+                                </span>
+                            </div>
+                            <div class="deleteN">voltar</div>
+                        </div>
+                </div>
+            `
+        listArea.appendChild(div)
+        document.querySelector('.deleteN').addEventListener('click', () => {
+                div.remove()
+            })
+        document.querySelector('.SaveY').addEventListener('click', () => {
+                let nameList = document.querySelector('#txtSaveList').value.trim()
+                const arraytoSave = arrayItensBackup.filter(item => !arrayItensExcluded.includes(item))
+                localStorage.setItem(nameList, JSON.stringify(arraytoSave))
+                div.remove()
+                const item = document.createElement('div')
+                item.classList = 'alertModal'
+                item.innerHTML = `
+                <div class="boxDelete">
+                        <div class="txtDelete">
+                            <p> Salvo em ❤ favoritos com sucesso!</p>
+                            <span style = "font-size: 25px;" >✅</span>
+            
+                `
+                listArea.appendChild(item)
+                setInterval(() => item.remove(), 2700)
+
+                const listSaved = JSON.parse(localStorage.getItem(nameList))
+                console.log(listSaved)
+            })
+    }
 })
 
 
@@ -536,13 +633,5 @@ function sortList () {
     
 }
 
-function openCloseModalDelete() {
-   const currentDisplay = getComputedStyle(alertDelete).display;
 
-    if (currentDisplay === 'none') {
-        alertDelete.style.display = 'flex';
-    } else {
-        alertDelete.style.display = 'none';
-    }
-    alert('rodou')
-}
+
