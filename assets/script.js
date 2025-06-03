@@ -38,7 +38,8 @@ let arrayItensChecked = []
 let arrayItensProblem = []
 let arrayItensProblemBackup = []
 let arrayItensExcluded = []
-let arrauAllItensExcluded = []
+let arrayAllItensExcluded = []
+let arrayFavoriteItens = []
 const msgAlert = document.querySelector('.msgAlert')
 let contFast = 0
 let idFast = 0
@@ -50,6 +51,8 @@ const midlebar = document.querySelector('.midlebar')
 let itensLength = document.querySelector('.itensLength')
 const btnDeleteAll = document.querySelector('.btn-deleteAll')
 const btnSave = document.querySelector('.btn-save')
+const favorites = document.querySelector('.favorites')
+const FavoriteArea = document.querySelector('.FavoriteArea')
 
 
 //EventListener
@@ -359,7 +362,7 @@ btnDeleteAll.addEventListener('click', () => {
                 arrayItensProblem = []
                 arrayItensProblemBackup = []
                 arrayItensExcluded = []
-                arrauAllItensExcluded = []
+                arrayAllItensExcluded = []
                 contFast = 0
                 idFast = 0
                 renderList()
@@ -414,11 +417,23 @@ btnSave.addEventListener('click', () => {
                 `
                 listArea.appendChild(item)
                 setInterval(() => item.remove(), 2700)
-
                 const listSaved = JSON.parse(localStorage.getItem(nameList))
                 console.log(listSaved)
+                console.log(arrayFavoriteItens)
             })
     }
+})
+
+favorites.addEventListener('click', () => {
+
+    boxListOptions.style.display = 'none'
+    buttonAreaNewList.style.padding = '50px 50px 50px 50px'
+    overlay.style.display = 'none'
+    homepage.style.display = 'none'
+    hInfos.style.display = 'flex'
+    renderFavoriteList ()
+    favoritesPage.style.display = 'flex'
+
 })
 
 
@@ -630,6 +645,48 @@ function sortList () {
         renderItensLength()
             
     }  
+    
+}
+
+function renderFavoriteList () {
+    /*if (arrayFavoriteItens.length == 0) {
+        const div = document.createElement('div')
+        div.classList = 'msgAlert'
+        div.innerHTML = `<p><i>Nenhuma lista foi adicionada aos favoritos ainda!!  =D </i></p>`
+        FavoriteArea.appendChild(div)
+    } else {*/
+         const tudo = {}
+
+        for (let i = 0; i < localStorage.length; i++) {
+            const key = localStorage.key(i)
+            arrayFavoriteItens.push(key)
+            console.log(arrayFavoriteItens)
+        } 
+
+        console.log(tudo)
+        if(arrayFavoriteItens.includes('selectedColor')) {
+            arrayFavoriteItens.splice(arrayFavoriteItens.indexOf('selectedColor'),1)
+        }
+        
+        arrayFavoriteItens.forEach((item) => {
+            const div = document.createElement('div')
+                div.classList = 'FavoriteboxListArea'
+                div.innerHTML = `
+                            <div class="FavoritelistItem">
+                                <div class="FavItemContent">
+                                    <div class="FavItemtxt">${item}</div>
+                                    <div class="saveInfo"><i>Salvo em --/--/-- </i></div>
+                                </div>
+                                <div class="lIc1"><div class="btn-FavSelected" title="selecionar">✔</div></div>
+                                <div class="lIc2"><div class="btn-FavDelete" title="remover"><span class="material-symbols-outlined">
+                                    delete
+                                    </span></div></div>
+                            </div>  
+                `
+        FavoriteArea.appendChild(div)
+        })
+        
+    //}
     
 }
 

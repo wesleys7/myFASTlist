@@ -1416,6 +1416,7 @@ html, body {
 
 .FavoriteArea {
     display: flex;
+    flex-direction: column;
     width: 90%;
     height: 100%;
     margin-top: 10px;
@@ -1440,6 +1441,7 @@ html, body {
     height: 35px;
     padding: 0px 8px 0px 25px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .lIc1 {
@@ -1493,11 +1495,23 @@ html, body {
     color: #fff;
 }
 
+.FavItemContent {
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    flex-grow: 1;
+    padding-right: 15px;
+}
 
 .FavItemtxt {
     flex-grow: 1;
     font-family: "Special Gothic Expanded One", 'Segoe UI';
     font-size: 14px;
+}
+
+.saveInfo {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 10px;
 }
 
 .alertModal {
