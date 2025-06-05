@@ -678,19 +678,21 @@ html, body {
 
 #txtSaveList {
     border: none;
-    background-color: #e9f7fcbd;
+    background-color: #dfdfdfbd;
     width: 250px;
     height: 25px;
     border-radius: 5px;
     outline: none;
     font-family: "Special Gothic Expanded One", 'Segoe UI';
     font-size: 14px;
+    padding-left: 15px;
 }
 
 #txtSaveList::placeholder {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-style: italic;
+    /*font-style: italic;*/
     color: #adadad;
+    
 }
 
 .addIa1 {
@@ -1444,6 +1446,10 @@ html, body {
     cursor: pointer;
 }
 
+.FavoritelistItem:active {
+    background-color: rgba(202, 200, 200, 0.5); 
+}
+
 .lIc1 {
     padding: 0px 3px 0px 3px;
 }
@@ -1480,9 +1486,9 @@ html, body {
     cursor: pointer;
     background-color:#ffffffc0;
     color: #777777;
-    width: 22px;
-    height: 22px;
-    border-radius: 8px;
+    width:20px;
+    height: 20px;
+    border-radius: 5px;
 }
 
 .btn-FavDelete:hover {
@@ -1495,20 +1501,35 @@ html, body {
     color: #fff;
 }
 
+#btn-FavDelete {
+    font-size: 19px;
+}
 .FavItemContent {
     display: flex;
     justify-content: center;
-    align-items: end;
+    align-items: center;
     flex-grow: 1;
     padding-right: 15px;
 }
-
-.FavItemtxt {
+.boxFavtxt { 
+    display: flex;
     flex-grow: 1;
+    align-items: center;
+
+}
+.FavItemtxt {
     font-family: "Special Gothic Expanded One", 'Segoe UI';
     font-size: 14px;
 }
 
+#fastListIconSave {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    font-size: 17px;
+    font-weight: bold;
+    color: #c8ff00;
+}
 .saveInfo {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-size: 10px;
@@ -1597,5 +1618,34 @@ html, body {
     border-radius: 5px;
 }
 .deleteN:active {
+    background-color:#e2e2e2c0;
+}
+
+
+
+.newListF {
+    background-color: rgba(36, 84, 241, 0.774);
+    border: 1px solid rgba(36, 84, 241, 0.774);
+    color: #FFF;
+    cursor: pointer;
+    width: 90px;
+    height: 25px;
+    border-radius: 5px;  
+}
+
+.newListF:active {
+    background-color: rgba(26, 61, 179, 0.774);
+}
+
+.continueF {
+    border: 1px solid #777777;
+    color: #777777;
+    cursor: pointer;
+    font-weight: bold;
+    width: 90px;
+    height: 25px;
+    border-radius: 5px;
+}
+.continueF:active {
     background-color:#e2e2e2c0;
 }

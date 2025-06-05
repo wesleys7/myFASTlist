@@ -39,7 +39,17 @@ let arrayItensProblem = []
 let arrayItensProblemBackup = []
 let arrayItensExcluded = []
 let arrayAllItensExcluded = []
-let arrayFavoriteItens = []
+let arrayFavoriteItensFL = []
+
+let dataFavoriteVer = JSON.parse(localStorage.getItem('savedDataF'))
+let dataFavoriteItensFL = []
+
+if(dataFavoriteVer == null) {
+    dataFavoriteItensFL = []
+} else {
+    dataFavoriteItensFL = dataFavoriteVer
+}
+
 const msgAlert = document.querySelector('.msgAlert')
 let contFast = 0
 let idFast = 0
@@ -104,6 +114,7 @@ saveColor.addEventListener('click', () => {
     themecolors.style.display = 'none' 
     menuListOptions.style.display = 'none'
     overlayTransp.style.display = 'none'
+    overlay.style.display = 'none'
 })
 
 about.addEventListener('click', () => {
@@ -385,7 +396,7 @@ btnSave.addEventListener('click', () => {
                 <div class="boxDelete">
                         <div class="txtDelete">
                             <p>Qual nome vamos dar à sua lista para poder salvar nos favoritos? =D</p>
-                            <div class="inputSaveList"><input type="text" name="txtSaveList" id="txtSaveList" maxlength="25" placeholder="Digite aqui o nome da sua lista..." autofocus autocomplete="off"></div>
+                            <div class="inputSaveList"><input type="text" name="txtSaveList" id="txtSaveList" maxlength="25" placeholder="Digite aqui..." autofocus autocomplete="off"></div>
                         </div>
                         
                         <div class="boxOptionsDelete">
@@ -398,12 +409,14 @@ btnSave.addEventListener('click', () => {
                 </div>
             `
         listArea.appendChild(div)
+        let nameListInput = document.querySelector('#txtSaveList')
+        nameListInput.focus()
         document.querySelector('.deleteN').addEventListener('click', () => {
                 div.remove()
             })
         document.querySelector('.SaveY').addEventListener('click', () => {
-                let nameList = document.querySelector('#txtSaveList').value.trim()
                 const arraytoSave = arrayItensBackup.filter(item => !arrayItensExcluded.includes(item))
+                let nameList = document.querySelector('#txtSaveList').value.trim()
                 localStorage.setItem(nameList, JSON.stringify(arraytoSave))
                 div.remove()
                 const item = document.createElement('div')
@@ -411,15 +424,62 @@ btnSave.addEventListener('click', () => {
                 item.innerHTML = `
                 <div class="boxDelete">
                         <div class="txtDelete">
-                            <p> Salvo em ❤ favoritos com sucesso!</p>
-                            <span style = "font-size: 25px;" >✅</span>
+                            </br>
+                            <p>Tudo ok, salvo com sucesso!✅<br/><strong>Deseja continuar editando sua lista, ou criar uma nova?</strong></p>
+                        <div class="boxOptionsDelete">
+                            <div class="newListF">Nova Lista+
+                            </div>
+                            <div class="continueF">Continuar</div>
+                        </div>
             
                 `
                 listArea.appendChild(item)
-                setInterval(() => item.remove(), 2700)
+                document.querySelector('.newListF').addEventListener('click', () => {
+                    item.remove()
+                    arrayItens = []
+                    arrayItensCopy = []
+                    arrayItensChecked = []
+                    arrayItensProblem = []
+                    arrayItensProblemBackup = []
+                    arrayItensExcluded = []
+                    arrayAllItensExcluded = []
+                    contFast = 0
+                    idFast = 0
+                    renderList()
+                    renderListChecked()
+                    renderListProblem()
+                    renderItensLength()
+                })
+                document.querySelector('.continueF').addEventListener('click', () => {
+                    item.remove()
+                })
+
+
+
+
+                //setInterval(() => item.remove(), 2700)
+
+                let now = new Date
+                let day = (now.getDay() +1)
+                let month = (now.getMonth() + 1)
+                let year = now.getFullYear()
+
+                let dataListSave = {
+                    name: nameList,
+                    day: day,
+                    month: month,
+                    year: year,
+                }
+
+                dataFavoriteItensFL.push(dataListSave)
+
+                localStorage.setItem('savedDataF', JSON.stringify(dataFavoriteItensFL))
+                
+
+                renderFavoriteList()
                 const listSaved = JSON.parse(localStorage.getItem(nameList))
                 console.log(listSaved)
-                console.log(arrayFavoriteItens)
+                console.log(arrayFavoriteItensFL)
             })
     }
 })
@@ -431,10 +491,51 @@ favorites.addEventListener('click', () => {
     overlay.style.display = 'none'
     homepage.style.display = 'none'
     hInfos.style.display = 'flex'
-    renderFavoriteList ()
     favoritesPage.style.display = 'flex'
+    renderFavoriteList()
 
 })
+
+FavoriteArea.addEventListener('click', (e) => {
+    if (e.target.closest('.btn-FavDelete')) return
+    
+    if (e.target.closest('.FavoriteboxListArea')) {
+        const item = e.target.closest('.FavoritelistItem')
+        const key = item.querySelector('.FavItemtxt').textContent.trim()
+        arrayItens = JSON.parse(localStorage.getItem(key))
+        arrayItensCopy = [...arrayItens]
+        renderList()
+        contFast = arrayItens.length
+        renderItensLength()
+       
+
+        const div = document.createElement('div')
+            div.classList = 'alertModal'
+            div.innerHTML = `
+                <div class="boxDelete">
+                        <div class="txtDelete">
+                            </br>
+                            </br>
+                            <p>Carregando lista... 📝</p>
+                </div>
+            `
+            FavoriteArea.appendChild(div)
+            
+        setTimeout(() => {
+            div.remove()
+            favoritesPage.style.display = 'none'
+            fastListPage.style.display = 'flex' 
+        },1000)
+
+
+
+        console.log(arrayItens)
+        
+        
+
+    }
+})
+
 
 
 
@@ -448,10 +549,12 @@ function updateBackground () {
     }
 }
 
-updateBackground ()
+updateBackground()
+renderFavoriteList()
 
 
 function updateClock() {
+    
     let now = new Date
     let h = now.getHours()
     let m = now.getMinutes()
@@ -465,8 +568,7 @@ function updateClock() {
     let date = now.getDate()
     let month = monthNames[now.getMonth()]
     let year = now.getFullYear()
-
-
+   
 
     document.querySelector('.infoday').innerHTML = `${day}, dia ${date}`
     document.querySelector('.hour').innerHTML = h<10? '0'+h:h
@@ -649,44 +751,62 @@ function sortList () {
 }
 
 function renderFavoriteList () {
-    /*if (arrayFavoriteItens.length == 0) {
+    FavoriteArea.innerHTML = ''
+    const savedInfo = JSON.parse(localStorage.getItem('savedDataF'))
+
+    if (savedInfo == null || savedInfo.length == 0 ) {
         const div = document.createElement('div')
         div.classList = 'msgAlert'
         div.innerHTML = `<p><i>Nenhuma lista foi adicionada aos favoritos ainda!!  =D </i></p>`
         FavoriteArea.appendChild(div)
-    } else {*/
-         const tudo = {}
+    } else {
+        
+
+        arrayFavoriteItensFL=[]
+        
 
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i)
-            arrayFavoriteItens.push(key)
-            console.log(arrayFavoriteItens)
+            arrayFavoriteItensFL.push(key)
+            console.log(arrayFavoriteItensFL)
         } 
 
-        console.log(tudo)
-        if(arrayFavoriteItens.includes('selectedColor')) {
-            arrayFavoriteItens.splice(arrayFavoriteItens.indexOf('selectedColor'),1)
+        if(arrayFavoriteItensFL.includes('selectedColor')) {
+            arrayFavoriteItensFL.splice(arrayFavoriteItensFL.indexOf('selectedColor'),1)
         }
         
-        arrayFavoriteItens.forEach((item) => {
+        if(arrayFavoriteItensFL.includes('savedDataF')) {
+            arrayFavoriteItensFL.splice(arrayFavoriteItensFL.indexOf('savedDataF'),1)
+        }
+
+        arrayFavoriteItensFL.forEach((item, i) => {
+            let day = savedInfo[i].day
+            let month = savedInfo[i].month
+            let year = savedInfo[i].year
             const div = document.createElement('div')
                 div.classList = 'FavoriteboxListArea'
                 div.innerHTML = `
                             <div class="FavoritelistItem">
                                 <div class="FavItemContent">
-                                    <div class="FavItemtxt">${item}</div>
-                                    <div class="saveInfo"><i>Salvo em --/--/-- </i></div>
+                                    <div class="boxFavtxt">
+                                        <div class="FavItemtxt">${item}</div>
+                                        <div class="fastListIconSave"><span id="fastListIconSave"class="material-symbols-outlined">
+                                            add_task
+                                        </span></div>
+                                    </div>
+                                    <div class="saveInfo"><i>Salvo em ${day<10? '0'+day:day}/${month<10? '0'+month:month}/${year} </i></div>
                                 </div>
-                                <div class="lIc1"><div class="btn-FavSelected" title="selecionar">✔</div></div>
-                                <div class="lIc2"><div class="btn-FavDelete" title="remover"><span class="material-symbols-outlined">
+                                <!--<div class="lIc1"><div class="btn-FavSelected" title="selecionar">✔</div></div>-->
+                                <div class="lIc2"><div class="btn-FavDelete" title="remover"><span id="btn-FavDelete"class="material-symbols-outlined">
                                     delete
                                     </span></div></div>
                             </div>  
                 `
         FavoriteArea.appendChild(div)
         })
+        console.log(arrayFavoriteItensFL)
         
-    //}
+    }
     
 }
 
