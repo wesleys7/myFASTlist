@@ -420,7 +420,7 @@ html, body {
     font-style: normal;
 }
 
-.fastList, .supermarket, .favorites, .customList {
+.fastList, .favorites, .customList {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -439,10 +439,24 @@ html, body {
     background-color: #77777734;
 }
 
-.supermarket:hover {
+.supermarket {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /*border: 1px solid #00000041;*/
+    background-color: #ffffffd3 ;
+    border-radius: 15px;
+    width: 62px;
+    height: 60px;
+    font-size: 18px;
+    cursor: not-allowed; 
+    opacity: 0.3;
+}
+
+/*.supermarket:hover {
     color: #ffffffd3;
     background-color: #77777734;
-}
+}*/
 
 .favorites:hover {
     color: #ff0037c2;
@@ -459,10 +473,10 @@ html, body {
     background-color: #77777771;
 }
 
-.supermarket:active {
+/*.supermarket:active {
     color: #ffffffd3;
     background-color: #77777771;
-}
+}*/
 
 .favorites:active {
     color: #b8022ac2;
@@ -1621,6 +1635,19 @@ html, body {
     background-color:#e2e2e2c0;
 }
 
+.back {
+    border: 1px solid #777777;
+    color: #777777;
+    cursor: pointer;
+    font-weight: bold;
+    width: 70px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.back:active {
+    background-color:#e2e2e2c0;
+}
 
 
 .newListF {

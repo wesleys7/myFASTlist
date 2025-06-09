@@ -65,6 +65,7 @@ const favorites = document.querySelector('.favorites')
 const FavoriteArea = document.querySelector('.FavoriteArea')
 
 
+
 //EventListener
 
 menuOptions.addEventListener('click', () => {
@@ -170,25 +171,79 @@ btnHome.forEach (button => { button.addEventListener ('click', () => {
 })
 
 btnFavorite.addEventListener('click', () =>{
+    //Fazer uma verificação com o usuário aqui
+    
     fastListPage.style.display = 'none'
     favoritesPage.style.display = 'flex'
 
 })
 
 btnAddItem.addEventListener('click', () => {
-    addItemFast()
-    renderListProblem()
-    renderListChecked()
-    arrayItensBackup = [...arrayItens]
-})
-addItens.addEventListener('keydown', (e) => {
-    if(e.key === 'Enter') {
+    let txtValue = addItens.value.toLowerCase().trim()
+    let verif = arrayItens.some(item => item.toLowerCase() === txtValue.toLowerCase())
+
+    if(verif) {
+        const div = document.createElement('div')
+        div.classList = 'alertModal'
+        div.innerHTML = `
+            <div class="boxDelete">
+                <div class="txtDelete">
+                    <p>opa... opa... Você já adicionou este item na lista 😅</p>
+                    <div class="itemtxt">${txtValue}</div>
+                </div>
+                <div class="boxOptionsDelete" id="back">
+                    <div class="back">voltar</div>
+            </div>
+        `
+        listArea.appendChild(div)
+        document.querySelector('#back').addEventListener('click', () => {
+            setTimeout(()=> {addItens.focus(), addItens.value = ''}, 50)
+            div.remove()
+            
+        })
+         
+    } else {
         addItemFast()
         renderListProblem()
         renderListChecked()
         arrayItensBackup = [...arrayItens]
-        console.log(arrayItens)
     }
+    
+})
+addItens.addEventListener('keydown', (e) => {
+    
+    if (e.key === 'Enter') {
+        let txtValue = addItens.value.toLowerCase().trim()
+        let verif = arrayItens.some(item => item.toLowerCase() === txtValue.toLowerCase())
+
+        if(verif) {
+             const div = document.createElement('div')
+            div.classList = 'alertModal'
+            div.innerHTML = `
+                <div class="boxDelete">
+                    <div class="txtDelete">
+                        <p>opa... opa... Você já adicionou este item na lista 😅</p>
+                        <div class="itemtxt">${txtValue}</div>
+                    </div>
+                    <div class="boxOptionsDelete" id="back">
+                        <div class="back">voltar</div>
+                </div>
+            `
+            listArea.appendChild(div)
+            document.querySelector('#back').addEventListener('click', () => {
+                setTimeout(()=> {addItens.focus(), addItens.value = ''}, 50)
+                div.remove()
+            })
+        } else {
+            addItemFast()
+            renderListProblem()
+            renderListChecked()
+            arrayItensBackup = [...arrayItens]
+            console.log(arrayItens)
+        }
+    }
+    
+   
 })
 
 btnOrder.addEventListener('click', sortList)
@@ -415,71 +470,78 @@ btnSave.addEventListener('click', () => {
                 div.remove()
             })
         document.querySelector('.SaveY').addEventListener('click', () => {
-                const arraytoSave = arrayItensBackup.filter(item => !arrayItensExcluded.includes(item))
                 let nameList = document.querySelector('#txtSaveList').value.trim()
-                localStorage.setItem(nameList, JSON.stringify(arraytoSave))
-                div.remove()
-                const item = document.createElement('div')
-                item.classList = 'alertModal'
-                item.innerHTML = `
-                <div class="boxDelete">
-                        <div class="txtDelete">
-                            </br>
-                            <p>Tudo ok, salvo com sucesso!✅<br/><strong>Deseja continuar editando sua lista, ou criar uma nova?</strong></p>
-                        <div class="boxOptionsDelete">
-                            <div class="newListF">Nova Lista+
-                            </div>
-                            <div class="continueF">Continuar</div>
-                        </div>
-            
-                `
-                listArea.appendChild(item)
-                document.querySelector('.newListF').addEventListener('click', () => {
-                    item.remove()
-                    arrayItens = []
-                    arrayItensCopy = []
-                    arrayItensChecked = []
-                    arrayItensProblem = []
-                    arrayItensProblemBackup = []
-                    arrayItensExcluded = []
-                    arrayAllItensExcluded = []
-                    contFast = 0
-                    idFast = 0
-                    renderList()
-                    renderListChecked()
-                    renderListProblem()
-                    renderItensLength()
-                })
-                document.querySelector('.continueF').addEventListener('click', () => {
-                    item.remove()
-                })
+                let verif = dataFavoriteItensFL.some(item => item.name.toLowerCase() === nameList.toLowerCase())
 
-
-
-
-                //setInterval(() => item.remove(), 2700)
-
-                let now = new Date
-                let day = (now.getDay() +1)
-                let month = (now.getMonth() + 1)
-                let year = now.getFullYear()
-
-                let dataListSave = {
-                    name: nameList,
-                    day: day,
-                    month: month,
-                    year: year,
-                }
-
-                dataFavoriteItensFL.push(dataListSave)
-
-                localStorage.setItem('savedDataF', JSON.stringify(dataFavoriteItensFL))
+                if(verif) {
+                    alert('Uma lista com esse nome já foi salva nos favoritos. Por favor digite outro nome!')
+                } else {
+                    const arraytoSave = arrayItensBackup.filter(item => !arrayItensExcluded.includes(item))
                 
+                    localStorage.setItem(nameList, JSON.stringify(arraytoSave))
+                    div.remove()
+                    const item = document.createElement('div')
+                    item.classList = 'alertModal'
+                    item.innerHTML = `
+                    <div class="boxDelete">
+                            <div class="txtDelete">
+                                </br>
+                                <p>Tudo ok, salvo com sucesso!✅<br/><strong>Deseja continuar editando sua lista, ou criar uma nova?</strong></p>
+                            <div class="boxOptionsDelete">
+                                <div class="newListF">Nova Lista+
+                                </div>
+                                <div class="continueF">Continuar</div>
+                            </div>
+                
+                    `
+                    listArea.appendChild(item)
+                    document.querySelector('.newListF').addEventListener('click', () => {
+                        item.remove()
+                        arrayItens = []
+                        arrayItensCopy = []
+                        arrayItensChecked = []
+                        arrayItensProblem = []
+                        arrayItensProblemBackup = []
+                        arrayItensExcluded = []
+                        arrayAllItensExcluded = []
+                        contFast = 0
+                        idFast = 0
+                        renderList()
+                        renderListChecked()
+                        renderListProblem()
+                        renderItensLength()
+                    })
+                    document.querySelector('.continueF').addEventListener('click', () => {
+                        item.remove()
+                    })
 
-                renderFavoriteList()
-                const listSaved = JSON.parse(localStorage.getItem(nameList))
-                console.log(listSaved)
-                console.log(arrayFavoriteItensFL)
+
+
+
+                    //setInterval(() => item.remove(), 2700)
+
+                    let now = new Date
+                    let day = (now.getDay() +1)
+                    let month = (now.getMonth() + 1)
+                    let year = now.getFullYear()
+
+                    let dataListSave = {
+                        name: nameList,
+                        day: day,
+                        month: month,
+                        year: year,
+                    }
+
+                    dataFavoriteItensFL.push(dataListSave)
+
+                    localStorage.setItem('savedDataF', JSON.stringify(dataFavoriteItensFL))
+                    
+
+                    renderFavoriteList()
+                    const listSaved = JSON.parse(localStorage.getItem(nameList))
+                    console.log(listSaved)
+                    console.log(arrayFavoriteItensFL)
+                    }
             })
     }
 })
@@ -534,6 +596,58 @@ FavoriteArea.addEventListener('click', (e) => {
         
 
     }
+    
+})
+
+FavoriteArea.addEventListener('click', (e) => {
+    if (e.target.closest('.btn-FavDelete')) {
+        const item = e.target.closest('.FavoritelistItem')
+        const text = item.querySelector('.FavItemtxt').textContent.trim()
+        const index = dataFavoriteItensFL.findIndex(item => item.name === text)
+        
+        let day = dataFavoriteItensFL[index].day
+        let month = dataFavoriteItensFL[index].month
+        let year = dataFavoriteItensFL[index].year
+        
+        const div = document.createElement('div')
+        div.classList = 'alertModal'
+            div.innerHTML = `
+                <div class="boxDelete">
+                    <div class="txtDelete">
+                        <p>⚠️ Tem certeza que deseja remover esta lista dos favoritos?<br>Depois de excluída, ela não poderá ser acessada novamente.</p>
+                        <div class="itemtxt">${text}📝
+                        <div class="saveInfo"><i>Salvo em ${day<10? '0'+day:day}/${month<10? '0'+month:month}/${year} </i></div>
+                        </div>
+                    </div>
+                    
+                    <div class="boxOptionsDelete">
+                        <div class="deleteY"><span class="material-symbols-outlined">
+                            delete
+                            </span>
+                        </div>
+                        <div class="deleteN">voltar</div>
+                </div>
+            `
+        FavoriteArea.appendChild(div)
+
+        document.querySelector('.deleteN').addEventListener('click', () => {
+                div.remove()
+            })
+        document.querySelector('.deleteY').addEventListener('click', () => {
+                
+                
+
+                if(index !== -1) {
+                    dataFavoriteItensFL.splice(index,1)
+                    localStorage.removeItem(text)
+                    console.log(dataFavoriteItensFL)
+                    localStorage.setItem('savedDataF', JSON.stringify(dataFavoriteItensFL))
+                    FavoriteArea.innerHTML = ''
+                    renderFavoriteList()
+                } 
+            })
+    }
+
 })
 
 
@@ -768,7 +882,6 @@ function renderFavoriteList () {
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i)
             arrayFavoriteItensFL.push(key)
-            console.log(arrayFavoriteItensFL)
         } 
 
         if(arrayFavoriteItensFL.includes('selectedColor')) {
@@ -804,7 +917,6 @@ function renderFavoriteList () {
                 `
         FavoriteArea.appendChild(div)
         })
-        console.log(arrayFavoriteItensFL)
         
     }
     
