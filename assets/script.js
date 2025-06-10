@@ -63,8 +63,9 @@ const btnDeleteAll = document.querySelector('.btn-deleteAll')
 const btnSave = document.querySelector('.btn-save')
 const favorites = document.querySelector('.favorites')
 const FavoriteArea = document.querySelector('.FavoriteArea')
+const btnEndList = document.querySelector('.btn-endList')
 
-
+backupCheck()
 
 //EventListener
 
@@ -152,6 +153,7 @@ addNewListBtn.addEventListener('click', () => {
 })
 
 fastList.addEventListener('click', () => {
+   
     boxListOptions.style.display = 'none'
     buttonAreaNewList.style.padding = '50px 50px 50px 50px'
     overlay.style.display = 'none'
@@ -163,22 +165,109 @@ fastList.addEventListener('click', () => {
 })
 
 btnHome.forEach (button => { button.addEventListener ('click', () => {
-    fastListPage.style.display = 'none'
-    favoritesPage.style.display = 'none'
-    hInfos.style.display = 'none'
-    homepage.style.display = 'flex'
-})
+    
+    if (arrayItens.length !== 0) {
+        
+        const div = document.createElement('div')
+        div.classList = 'alertModal'
+            div.innerHTML = `
+                <div class="boxDelete">
+                    <div class="txtDelete">
+                        <p>Deseja sair para a página ⌂ inicial ?<br/><strong>Se a lista não foi salva, todos os itens serão perdidos!</strong></p>
+                    </div>
+                    <div class="boxOptionsDelete">
+                        <div class="deleteY">sair</div>
+                        <div class="deleteN">voltar</div>
+                </div>
+            `
+        listArea.appendChild(div)
+
+        document.querySelector('.deleteN').addEventListener('click', () => {
+                div.remove()
+            })
+        document.querySelector('.deleteY').addEventListener('click', () => {
+                arrayItens = []
+                arrayItensCopy = []
+                arrayItensChecked = []
+                arrayItensProblem = []
+                arrayItensProblemBackup = []
+                arrayItensExcluded = []
+                arrayAllItensExcluded = []
+                contFast = 0
+                idFast = 0
+                renderList()
+                renderListChecked()
+                renderListProblem()
+                renderItensLength()
+                fastListPage.style.display = 'none'
+                favoritesPage.style.display = 'none'
+                hInfos.style.display = 'none'
+                homepage.style.display = 'flex'
+                div.remove()
+                localStorage.removeItem('securityBackup')
+            })
+    } else {
+
+        fastListPage.style.display = 'none'
+        favoritesPage.style.display = 'none'
+        hInfos.style.display = 'none'
+        homepage.style.display = 'flex'
+    }
+    
+    
+    })
 })
 
 btnFavorite.addEventListener('click', () =>{
-    //Fazer uma verificação com o usuário aqui
-    
-    fastListPage.style.display = 'none'
-    favoritesPage.style.display = 'flex'
+    if (arrayItens.length !== 0) {
+        
+        const div = document.createElement('div')
+        div.classList = 'alertModal'
+            div.innerHTML = `
+                <div class="boxDelete">
+                    <div class="txtDelete">
+                        <p>Deseja sair para a página de ❤ favoritos ?<br/><strong>Se a lista não foi salva, todos os itens serão perdidos!</strong></p>
+                    </div>
+                    <div class="boxOptionsDelete">
+                        <div class="deleteY">sair</div>
+                        <div class="deleteN">voltar</div>
+                </div>
+            `
+        listArea.appendChild(div)
+
+        document.querySelector('.deleteN').addEventListener('click', () => {
+                div.remove()
+            })
+        document.querySelector('.deleteY').addEventListener('click', () => {
+                localStorage.removeItem('securityBackup')
+                arrayItens = []
+                arrayItensCopy = []
+                arrayItensChecked = []
+                arrayItensProblem = []
+                arrayItensProblemBackup = []
+                arrayItensExcluded = []
+                arrayAllItensExcluded = []
+                contFast = 0
+                idFast = 0
+                renderList()
+                renderListChecked()
+                renderListProblem()
+                renderItensLength()
+                fastListPage.style.display = 'none'
+                favoritesPage.style.display = 'flex'
+                div.remove()
+                
+            })
+
+    } else {
+        fastListPage.style.display = 'none'
+        favoritesPage.style.display = 'flex'
+    }  
 
 })
 
 btnAddItem.addEventListener('click', () => {
+    localStorage.setItem('activeSession', 'true')
     let txtValue = addItens.value.toLowerCase().trim()
     let verif = arrayItens.some(item => item.toLowerCase() === txtValue.toLowerCase())
 
@@ -208,11 +297,12 @@ btnAddItem.addEventListener('click', () => {
         renderListChecked()
         arrayItensBackup = [...arrayItens]
     }
-    
+    setInterval(automaticSave,500)
 })
 addItens.addEventListener('keydown', (e) => {
     
     if (e.key === 'Enter') {
+        localStorage.setItem('activeSession', 'true')
         let txtValue = addItens.value.toLowerCase().trim()
         let verif = arrayItens.some(item => item.toLowerCase() === txtValue.toLowerCase())
 
@@ -239,9 +329,9 @@ addItens.addEventListener('keydown', (e) => {
             renderListProblem()
             renderListChecked()
             arrayItensBackup = [...arrayItens]
-            console.log(arrayItens)
         }
     }
+    setInterval(automaticSave,500)
     
    
 })
@@ -265,7 +355,7 @@ listArea.addEventListener('click', (e) => {
         renderListChecked()
         contFast--
         renderItensLength()
-        console.log(arrayItens)
+
     
     } else if (e.target.classList.contains('btn-delete') || e.target.classList.contains('midlebar')) {
         const item = e.target.closest('.boxListArea')
@@ -333,7 +423,6 @@ listArea.addEventListener('click', (e) => {
         renderList()
         renderListProblem()
         renderListChecked()
-        console.log(arrayItens)
 
     } else if (e.target.classList.contains('btn-reverse')) {
 
@@ -435,6 +524,7 @@ btnDeleteAll.addEventListener('click', () => {
                 renderListChecked()
                 renderListProblem()
                 renderItensLength()
+                localStorage.removeItem('securityBackup')
             })
     }
     
@@ -497,6 +587,7 @@ btnSave.addEventListener('click', () => {
                     listArea.appendChild(item)
                     document.querySelector('.newListF').addEventListener('click', () => {
                         item.remove()
+                        localStorage.removeItem('securityBackup')
                         arrayItens = []
                         arrayItensCopy = []
                         arrayItensChecked = []
@@ -510,15 +601,11 @@ btnSave.addEventListener('click', () => {
                         renderListChecked()
                         renderListProblem()
                         renderItensLength()
+                        
                     })
                     document.querySelector('.continueF').addEventListener('click', () => {
                         item.remove()
                     })
-
-
-
-
-                    //setInterval(() => item.remove(), 2700)
 
                     let now = new Date
                     let day = (now.getDay() +1)
@@ -539,12 +626,60 @@ btnSave.addEventListener('click', () => {
 
                     renderFavoriteList()
                     const listSaved = JSON.parse(localStorage.getItem(nameList))
-                    console.log(listSaved)
-                    console.log(arrayFavoriteItensFL)
                     }
             })
     }
 })
+
+btnEndList.addEventListener('click', () => {
+    
+    if(contFast < 1 && arrayItensChecked.length == 0) {
+        alert('A lista está vazia')
+    } else {
+        const div = document.createElement('div')
+        div.classList = 'alertModal'
+            div.innerHTML = `
+                <div class="boxDelete">
+                    <div class="txtDelete">
+                        <p>Oba... lista concluída 🤓??? Deseja fechar e finalizar a lista?<br/><strong>Lembre-se!!! Se quiser sua lista nos favoritos, salve-a antes de finalizar!</strong></p>
+                    </div>
+                    <div class="boxOptionsDelete">
+                        <div class="endList">finalizar
+                        </div>
+                        <div class="deleteN">voltar</div>
+                </div>
+            `
+        listArea.appendChild(div)
+
+        document.querySelector('.deleteN').addEventListener('click', () => {
+                div.remove()
+            })
+        document.querySelector('.endList').addEventListener('click', () => {
+                arrayItens = []
+                arrayItensCopy = []
+                arrayItensChecked = []
+                arrayItensProblem = []
+                arrayItensProblemBackup = []
+                arrayItensExcluded = []
+                arrayAllItensExcluded = []
+                contFast = 0
+                idFast = 0
+                renderList()
+                renderListChecked()
+                renderListProblem()
+                renderItensLength()
+                localStorage.removeItem('securityBackup')
+                localStorage.removeItem('activeSession')
+                homepage.style.display = 'flex'
+                hInfos.style.display = 'none'
+                fastListPage.style.display = 'none'
+            })
+    }
+
+
+
+})
+
 
 favorites.addEventListener('click', () => {
 
@@ -555,6 +690,7 @@ favorites.addEventListener('click', () => {
     hInfos.style.display = 'flex'
     favoritesPage.style.display = 'flex'
     renderFavoriteList()
+    localStorage.removeItem('securityBackup')
 
 })
 
@@ -588,12 +724,6 @@ FavoriteArea.addEventListener('click', (e) => {
             favoritesPage.style.display = 'none'
             fastListPage.style.display = 'flex' 
         },1000)
-
-
-
-        console.log(arrayItens)
-        
-        
 
     }
     
@@ -640,7 +770,6 @@ FavoriteArea.addEventListener('click', (e) => {
                 if(index !== -1) {
                     dataFavoriteItensFL.splice(index,1)
                     localStorage.removeItem(text)
-                    console.log(dataFavoriteItensFL)
                     localStorage.setItem('savedDataF', JSON.stringify(dataFavoriteItensFL))
                     FavoriteArea.innerHTML = ''
                     renderFavoriteList()
@@ -649,8 +778,6 @@ FavoriteArea.addEventListener('click', (e) => {
     }
 
 })
-
-
 
 
 //functions
@@ -737,9 +864,10 @@ function rebuild () {
 function renderList () {
     addItens.value = ''
     addItens.focus()
+    const reversedArrayItens = [...arrayItens].reverse()
     if(sortListOn == false) {
             listArea.innerHTML = ''
-            arrayItens.forEach((itemvalue, i) => {
+            reversedArrayItens.forEach((itemvalue, i) => {
             const item = document.createElement('div')
             item.className = 'boxListArea'
             item.id = `item${i}`
@@ -892,6 +1020,14 @@ function renderFavoriteList () {
             arrayFavoriteItensFL.splice(arrayFavoriteItensFL.indexOf('savedDataF'),1)
         }
 
+        if(arrayFavoriteItensFL.includes('securityBackup')) {
+            arrayFavoriteItensFL.splice(arrayFavoriteItensFL.indexOf('securityBackup'),1)
+        }
+
+        if(arrayFavoriteItensFL.includes('activeSession')) {
+            arrayFavoriteItensFL.splice(arrayFavoriteItensFL.indexOf('activeSession'),1)
+        }
+        
         arrayFavoriteItensFL.forEach((item, i) => {
             let day = savedInfo[i].day
             let month = savedInfo[i].month
@@ -922,5 +1058,95 @@ function renderFavoriteList () {
     
 }
 
+function automaticSave() {
+    const listBackup = [
+        ...arrayItens.map(item=> ({origin: 'arrayItens', value: item})),
+        ...arrayItensBackup.map(item=> ({origin: 'arrayItensBackup', value: item})) ,
+        ...arrayItensCopy.map(item=> ({origin: 'arrayItensCopy', value: item})) ,
+        ...arrayItensChecked.map(item=> ({origin: 'arrayItensChecked', value: item})) ,
+        ...arrayItensProblem.map(item=> ({origin: 'arrayItensProblem', value: item})) ,
+        ...arrayItensProblemBackup.map(item=> ({origin: 'arrayItensProblemBackup', value: item})),
+        ...arrayItensExcluded.map(item=> ({origin: 'arrayItensExcluded', value: item})) ,
+        ...arrayAllItensExcluded.map(item=> ({origin: 'arrayAllItensExcluded', value: item}))
+    ]
 
 
+    localStorage.setItem('securityBackup', JSON.stringify(listBackup))
+}
+
+
+
+async function backupCheck() {
+    const securityBackup = JSON.parse(localStorage.getItem('securityBackup'));
+
+    if (securityBackup.length != 0) {
+        const item = document.createElement('div');
+        item.classList = 'alertModal';
+        item.innerHTML = `
+            <div class="boxDelete">
+                <div class="txtDelete">
+                    <br/>
+                    <p>⚠️Encontramos no sistema um backup de segurança<br/><strong>Deseja continuar de onde parou, ou criar uma nova lista?</strong></p>
+                </div>
+                <div class="boxOptionsDelete">
+                    <div class="newListF">Nova Lista+</div>
+                    <div class="continueF">Continuar</div>
+                </div>
+            </div>
+        `;
+        homepage.appendChild(item);
+
+        document.querySelector('.newListF').addEventListener('click', () => {
+            item.remove();
+            localStorage.removeItem('securityBackup')
+            arrayItens = []
+            arrayItensCopy = []
+            arrayItensChecked = []
+            arrayItensProblem = []
+            arrayItensProblemBackup = []
+            arrayItensExcluded = []
+            arrayAllItensExcluded = []
+            contFast = 0
+            idFast = 0
+        });
+
+        document.querySelector('.continueF').addEventListener('click', () => {
+            item.remove();
+            arrayItens = []
+            arrayItensCopy = []
+            arrayItensChecked = []
+            arrayItensProblem = []
+            arrayItensProblemBackup = []
+            arrayItensExcluded = []
+            arrayAllItensExcluded = []
+            contFast = 0
+            idFast = 0
+            securityBackup.forEach(item => {
+                
+                if(item.origin === 'arrayItens') arrayItens.push(item.value);
+                else if (item.origin === 'arrayItensBackup') arrayItensBackup.push(item.value);
+                else if (item.origin === 'arrayItensCopy') arrayItensCopy.push(item.value);
+                else if (item.origin === 'arrayItensChecked') arrayItensChecked.push(item.value);
+                else if (item.origin === 'arrayItensProblem') arrayItensProblem.push(item.value);
+                else if (item.origin === 'arrayItensProblemBackup') arrayItensProblemBackup.push(item.value);
+                else if (item.origin === 'arrayItensExcluded') arrayItensExcluded.push(item.value);
+                else if (item.origin === 'arrayAllItensExcluded') arrayAllItensExcluded.push(item.value);
+        
+            });
+            contFast = arrayItens.length + arrayItensProblem.length;
+            renderItensLength();
+            renderList();
+            renderListProblem();
+            renderListChecked();
+           
+
+            boxListOptions.style.display = 'none'
+            buttonAreaNewList.style.padding = '50px 50px 50px 50px'
+            overlay.style.display = 'none'
+            homepage.style.display = 'none'
+            hInfos.style.display = 'flex'
+            fastListPage.style.display = 'flex'
+            setTimeout(()=> {addItens.focus()}, 50)
+        });
+    };
+}

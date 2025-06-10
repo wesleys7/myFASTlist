@@ -1008,7 +1008,7 @@ html, body {
     height: 50px;
 }
 
-.PEa0, .PEa1, .PEa2, .PEa3 {
+.PEa0, .PEa1, .PEa2, .PEa3, .PEa4 {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1079,6 +1079,25 @@ html, body {
     cursor: pointer;
 }
 
+
+.btn-endList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: end;
+    background-color: #ffffffc0;
+    width: 75px;
+    height: 30px;
+    border-radius: 8px;
+    padding-right: 7px;
+    cursor: pointer;
+}
+
+
+.txtEndList {
+    font-size: 10px;
+}
+
 .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
@@ -1090,13 +1109,13 @@ html, body {
 
 
 .btn-order:hover , .btn-rebuild:hover, 
-.btn-deleteAll:hover, .btn-save:hover {
+.btn-deleteAll:hover, .btn-save:hover, .btn-endList:hover {
     color: #ffffffd3;
     background-color: #77777734; 
 } 
 
 .btn-order:active , .btn-rebuild:active, 
-.btn-deleteAll:active, .btn-save:active {
+.btn-deleteAll:active, .btn-save:active, .btn-endList:active {
     color: #ffffffd3;
     background-color: #77777771;
 }
@@ -1608,6 +1627,20 @@ html, body {
 
 .deleteY:active {
     background-color: rgba(179, 14, 14, 0.774);
+}
+
+.endList {
+    background-color: rgba(49, 180, 9, 0.774);
+    border: 1px solid rgba(49, 180, 9, 0.774);
+    color: #FFF;
+    cursor: pointer;
+    width: 70px;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.endList:active {
+    background-color: rgba(37, 139, 5, 0.774);
 }
 
 .SaveY {
