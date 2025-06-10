@@ -28,7 +28,7 @@ html, body {
 }
 
 .container {
-   display: flex;
+   display: none; /*mudar para flex ou none*/
    justify-content: center;
    align-items: center;
    height: 95vh;
@@ -279,6 +279,9 @@ html, body {
     max-height: 150px;
     object-fit: contain;
 }
+
+
+
 .hRight {
     width: 180px;
     height: 100%;
@@ -1708,4 +1711,53 @@ html, body {
 }
 .continueF:active {
     background-color:#e2e2e2c0;
+}
+
+
+
+
+.loadingContainer {
+    display: flex;/*mudar para none*/
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    min-height: 100vh;
+}
+.loadingInitial {
+    color: aliceblue;
+    width: 25px;
+    height: 25px;
+    background-color: transparent;
+    filter: drop-shadow(0px 0px 2px #ffffff);
+    border-radius: 100%;
+    border: 1px solid #ffffff ;
+    border-right: 1px solid transparent;
+    animation: loadingAnimation 2s ease-in-out infinite;
+}
+
+@keyframes loadingAnimation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+}
+
+
+.imgLogoInitial {
+    max-width: 100%;
+    max-height: 160px;
+    object-fit: contain;
+}
+
+.txtloading {
+    color: #ffffff6c;
+}
+.logoInitial {
+    display: flex;
+    justify-content: end;
+    align-items: end;
+    margin-bottom: -50px;
 }
