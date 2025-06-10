@@ -866,7 +866,7 @@ function rebuild () {
 
 function renderList () {
     addItens.value = ''
-    addItens.focus()
+    //addItens.focus()
     const reversedArrayItens = [...arrayItens].reverse()
     if(sortListOn == false) {
             listArea.innerHTML = ''
