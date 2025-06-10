@@ -5,11 +5,253 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>myFASTlist</title>
     <link rel="stylesheet" href="assets/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Jura:wght@300..700&family=Special+Gothic+Expanded+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 </head>
 <body>
-    <h1>hello word</h1>
+    <div class="overlay"></div>
+    <div class="overlayTransp"></div>
+    <div class="container">
+       <div class="box">
+            <div class="header">
+                <div class="hLeft">
+                    <div class="menuOptions">
+                        <div class="bar1"></div>
+                        <div class="bar2"></div>
+                        <div class="bar3"></div>
+                    </div>
+                    <div class="menuListOptions">
+                        <div class="boxMenuListOptions">
+                            <div class="btn-closeMenuListOptions" title="voltar"></div>
+                            <div class="theme">color 🎨</div>
+                            <div class="about">about ⓘ </div>
+                        </div>
+                        <div class="themecolors">
+                            <div class="boxcolors">
+                                <div class="defaultColor" title="azul padrão"></div>
+                                <div class="color1" title="azul escuro"></div>
+                                <div class="color2" title="verde dark"></div>
+                                <div class="color3" title="verde oliva"></div>
+                                <div class="color4" title="purple"></div>
+                                <div class="color5" title="rosa claro"></div>
+                            </div>
+                            <div class="saveColor">salvar<span class="material-symbols-outlined">
+                                save
+                            </span></div>
+                        </div>
+                        <div class="aboutinfo">
+                            <p>Esse projeto foi desenvolvido para fins de estudo, utilizando apenas HTML, CSS e JavaScript puro, com foco em praticar estrutura, estilo e interatividade sem frameworks. Instagram: @wesleys.7</p>
+                            <div class="closeAboutInfo"><div class="btn-closeAboutInfo">fechar</div></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="logo">
+                    <img class ="imgLogo" src="assets/logo files/logo.png" alt="logo">
+                </div>
+                <div class="hRight">
+                    <p class="version">ⓘ version under development </p>
+                    <div class="watch">
+                    </div>
+                </div>
+                
+            </div>
+            <div class="midle">
+                <div class="homepage"> <!--home page-->
+                    <div class="buttonAreaNewList">
+                        <span class="nova">CRIAR</span>
+                        <button class= "addNewList-btn" type="button">+</button>
+                        <span class="lista">lista</span>
+                    </div>
+                    <div class="boxListOptions">
+                        <div class="listOptions">
+                            <div class="area-1">
+                                <div class="fastList">+</div>
+                                <span>lista rápida</span>
+                            </div>
+                            <div class="area-2">
+                                <div class="supermarket" title="em desenvolvimento">🛒</div>
+                                <span style="color: #77777793;" title="em desenvolvimento">mercado(em dev)</span>
+                            </div>
+                            <div class="area-3">
+                                <div class="favorites">❤</div> 
+                                <span>favoritos</span> 
+                            </div>
+                            <!--    customTest
+                            <div class="area-4">
+                                <div class="customList">✎</div>
+                                <span>personalizar</span> 
+                            </div>-->                         
+                        </div>
+                    </div>
+                    
+                    <div class="clock">
+                        <p class="infoday"></p>
+                        
+                        <div class="time">
+                            <div class="hour">--</div>
+                            <div class="points">:</div>
+                            <div class="minutes">--</div>
+                        </div>
+                        
+                        <p class="infomonth"></p>
+                        
+    
+                    </div>
+                </div>
+                <div class="hInfos">
+                    <div class="hclock"></div>
+                </div>
+                <div class="fastList-Page"> <!--página da lista rápida-->
+                    
+                   
+                    <div class="header-fastListPage">
+                        <div class="title-fl">lista rápida+</div>
+                        <div class="afL1">
+                            <div class="btn-home" title="Página inicial">⌂</div>
+                        </div>
+                        <div class="afL2">
+                            <div class="btn-favorite" title="Listas favoritas">❤</div>
+                        </div>
+                        <div class="afL3">
+                            <div class="btn-favorite" title="Listas favoritas">❤</div>
+                        </div>
+                    </div>
+                    <div class="addItensArea">
+                        <div class="boxAddItens">
+                            <div class="inputAddItens"><input type="text" name="addItens" id="addItens" maxlength="30" placeholder="digite aqui: uma terefa, um lembrete, um item, etc..." autofocus autocomplete="off"></div>
+                            <div class="addIa1">
+                                <div class="btn-addItem">+</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="itensLength">Itens na lista 0</div>
+                    <div class="listArea">
+
+                        <div class="msgAlert"><p><i>Nenhum item foi adicionado ainda. Preencha o campo de texto e clique em '+' para começar sua lista, vamos lá!!  =D </i></p></div>
+
+                    </div>
+                    <div class="pageFooter">
+                        <div class="boxPagEnd">
+                            <div class="PEa0"><div class="btn-order" title="Organizar">A-Z↓</div></div>
+                            <!--<div class="PEa1"><div class="btn-rebuild" title="refazer">↺</div></div>-->
+                            <div class="PEa2"><div class="btn-deleteAll" title="nova lista"><span class="material-symbols-outlined">
+                                note_add
+                                </span></div></div>
+                            <div class="PEa3"><div class="btn-save" title="salvar lista"><span class="material-symbols-outlined">
+                                save_as
+                            </span></div></div>
+                            <div class="PEa4"><div class="btn-endList" title="Finalizar lista"><span class="txtEndList">finalizar itens</span><span class="material-symbols-outlined" id="iconEndList">
+                                select_check_box
+                            </span></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="supermarket-Page"><!--página da lista de mercado-->
+                    <div class="header-fastListPage">
+                        <div class="title-fl">Mercado🛒 </div>
+                        <div class="afL1">
+                            <div class="btn-home" title="Página inicial">⌂</div>
+                        </div>
+                        <div class="afL2">
+                            <div class="btn-favorite" title="Listas favoritas">❤</div>
+                        </div>
+                        <div class="afL3">
+                            <div class="btn-favorite" title="Listas favoritas">❤</div>
+                        </div>
+                    </div>
+                    <div class="addItensArea-SM">
+                        <div class="boxAddMoreItens">
+                            <span class="material-symbols-outlined" id="btn-addmoreItens">
+                                add_circle
+                                </span></div>
+                        <div class="boxAddItens-SM">
+                            <div class="boxClose"><span class="material-symbols-outlined" id="close-SM">
+                                removeclose
+                                </span></div>
+                            <div class="boxIside-SM">
+                                <div class="inputAddItens-SM">
+                                    <input type="text" name="addItens-SM" id="addItens-SM" maxlength="20" placeholder="digite um item da sua lista aqui." autofocus autocomplete="off">
+                                </div>
+                                <div class="elementsItens-SM">
+                                    <div class="boxQtd"><div class="btn-less">-</div><input type="number" name="txtqtd" id="txtQtd-SM" value="1"><div class="btn-more">+</div></div>
+                                    <div class="boxUnd">
+                                        <div class="boxInUnd">
+                                            <div class="und active">und</div>
+                                            <div class="pct">pct</div>
+                                            <div class="kg">kg</div>
+                                            <div class="g">g</div>
+                                        </div>
+                                    </div>
+                                    <div class="addIa1-SM">
+                                        <div class="btn-addItem-SM">+</div>
+                                        <span class="btn-addItem-SM-txt">add item</span>
+                                    </div>
+                                </div>
+                            </div>
+                           
+                        </div>
+                    </div>
+                    <div class="boxlength-SM">
+                        <div class="itensLength-SM">Itens na lista 1</div>
+                        <div class="itensLengthcar-SM">Itens no carrinho 0</div>
+                    </div>
+                    
+
+                    <div class="listArea">
 
 
+                        <div class="boxListArea" id="item0">
+                            <div class="listItem">
+                                <div class="section" title="mover item">
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                    <div class="dot"></div>
+                                </div>
+                                <div class="itemtxt">--</div>
+                                <div class="lIa1"><div class="btn-checked" title="ok">✔</div></div>
+                                <div class="lIa2"><div class="btn-alert" title="atenção">!</div></div>
+                                <div class="lIa4"><div class="btn-edit" title= "editar">✎</div></div>
+                                <div class="lIa3"><div class="btn-delete" title="deletar"><div class="midlebar"></div></div></div>
+                            </div>  
+                        </div>
+
+                    </div>
+                    <div class="pageFooter">
+                        <div class="boxPagEnd">
+                            <div class="PEa0"><div class="btn-order" title="Organizar">⇅</div></div>
+                            <div class="PEa1"><div class="btn-rebuild" title="refazer">↺</div></div>
+                            <div class="PEa2"><div class="btn-deleteAll" title="limpar lista"><span class="material-symbols-outlined">
+                                delete
+                                </span></div></div>
+                            <div class="PEa3"><div class="btn-save" title="Salvar lista">
+                                <span class="material-symbols-outlined">
+                                    save_as
+                                </span>
+                            </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="favorites-page"><!--página dos favoritos-->
+                    <div class="header-favoritePage">
+                        <div class="title-fl">listas favoritas❤</div>
+                        <div class="afL1">
+                            <div class="btn-home" title="Página inicial">⌂</div>
+                        </div>
+                    </div>
+                    <div class="FavoriteArea">
+                    </div>
+                </div>
+            </div>
+            <div class="footer"><!--footer page-->
+                <span>© developed by Wesley Souza - 2025</span>
+            </div>
+       </div>
+    </div>
     <script src="assets/script.js"></script>
 </body>
 </html>
