@@ -781,7 +781,10 @@ FavoriteArea.addEventListener('click', (e) => {
 
 
 //functions
-
+setTimeout(() => {
+    document.querySelector('.loadingContainer').style.display = 'none'
+    document.querySelector('.container').style.display = 'flex'
+}, 1800)
 
 function updateBackground () {
     const savedColor = localStorage.getItem('selectedColor')
