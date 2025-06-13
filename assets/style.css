@@ -126,6 +126,33 @@ html, body {
     color: #494949;
 }
 
+.notifications {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    border-bottom: 1px solid #6e6e6e28;
+    padding: 10px;
+    width: 80%;
+    height: 15px;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.notifications:active {
+    color: #494949;
+}
+
+#iconNotification {
+    font-size: 18px;
+    font-variation-settings:
+    'FILL' 0,
+    'wght' 250,
+    'GRAD' -10,
+    'opsz' 20
+}
+
 .themecolors {
     position: absolute;
     display: none;  /*mudar para none ou flex*/
@@ -266,6 +293,39 @@ html, body {
     height: 3px;
     border-radius: 10px;
     background-color: #fff;
+}
+
+.notificationPoint-menu {
+    display: flex;
+    position: fixed;
+    margin-top: 18px;
+    margin-left: 32px;
+    background-color: #ff0062;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.notificationPoint-about {
+    display: flex;
+    position: fixed;
+    margin-top: -25px;
+    margin-left: 62px;
+    background-color: #ff0062;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+
+.notificationPoint-notifications{
+    display: flex;
+    position: fixed;
+    margin-top: -25px;
+    margin-left: 96px;
+    background-color: #ff0062;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
 }
 
 .logo {
@@ -1612,6 +1672,14 @@ html, body {
     padding-bottom: 20px;
 }
 
+.txtModal {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    color: #777777;
+    padding-bottom: 20px;  
+}
+
 .boxOptionsDelete {
     display: flex;
     justify-content: center;
@@ -1756,6 +1824,8 @@ html, body {
 }
 
 .txtloading {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 13px;
     color: #ffffff6c;
 }
 .logoInitial {
