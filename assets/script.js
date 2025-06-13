@@ -83,8 +83,6 @@ let notificationPointMenuTF = true
 backupCheck()
 updateNotifications()
 
-console.log(notificationPointAboutTF())
-
 //EventListener
 
 menuOptions.addEventListener('click', () => {
@@ -156,7 +154,7 @@ about.addEventListener('click', () => {
                     <div class="back">voltar</div>
             </div>
         `
-        homepage.appendChild(div)
+        body.appendChild(div)
         document.querySelector('#back').addEventListener('click', () => {
             div.remove()
             localStorage.setItem('notificationPointAboutTF', false)
@@ -200,7 +198,7 @@ notifications.addEventListener('click', ()=> {
                     <div class="back">voltar</div>
             </div>
         `
-        homepage.appendChild(div)
+        body.appendChild(div)
         document.querySelector('#back').addEventListener('click', () => {
             div.remove()
             localStorage.setItem('notificationPointNotificationsTF', false)
@@ -230,7 +228,7 @@ notifications.addEventListener('click', ()=> {
                     <div class="back">voltar</div>
             </div>
         `
-        homepage.appendChild(div)
+        body.appendChild(div)
         document.querySelector('#back').addEventListener('click', () => {
             div.remove()
         })
@@ -891,7 +889,7 @@ FavoriteArea.addEventListener('click', (e) => {
 setTimeout(() => {
     document.querySelector('.loadingContainer').style.display = 'none'
     document.querySelector('.container').style.display = 'flex'
-}, 1800)
+}, 2500)
 
 function updateBackground () {
     const savedColor = localStorage.getItem('selectedColor')
@@ -1212,7 +1210,10 @@ function automaticSave() {
 async function backupCheck() {
     const securityBackup = JSON.parse(localStorage.getItem('securityBackup'));
 
-    if (securityBackup.length != 0) {
+
+    if (securityBackup === null) {
+
+    } else if (securityBackup.length != 0) {
         const item = document.createElement('div');
         item.classList = 'alertModal';
         item.innerHTML = `
