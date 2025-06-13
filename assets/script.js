@@ -64,8 +64,26 @@ const btnSave = document.querySelector('.btn-save')
 const favorites = document.querySelector('.favorites')
 const FavoriteArea = document.querySelector('.FavoriteArea')
 const btnEndList = document.querySelector('.btn-endList')
+const notifications = document.querySelector('.notifications')
+const notificationPointNotifications = document.querySelector('.notificationPoint-notifications')
+let notificationPointNotificationsTF = () => {
+    const status = localStorage.getItem('notificationPointNotificationsTF')
+    if (status === null) return true;
+    return status === 'true'
+}
+const notificationPointAbout = document.querySelector('.notificationPoint-about')
+let notificationPointAboutTF = () => { 
+    const status = localStorage.getItem('notificationPointAboutTF')
+    if (status === null) return true;
+    return status === 'true'
+}
+const notificationPointMenu = document.querySelector('.notificationPoint-menu')
+let notificationPointMenuTF = true
 
 backupCheck()
+updateNotifications()
+
+console.log(notificationPointAboutTF())
 
 //EventListener
 
@@ -120,14 +138,103 @@ saveColor.addEventListener('click', () => {
 })
 
 about.addEventListener('click', () => {
-    aboutinfo.style.display = aboutinfo.style.display === 'flex'? 'none' : 'flex'
-    themecolors.style.display = 'none' 
+    //aboutinfo.style.display = aboutinfo.style.display === 'flex'? 'none' : 'flex'
+        const div = document.createElement('div')
+        div.classList = 'alertModal'
+        div.innerHTML = `
+            <div class="boxDelete">
+                <div class="txtModal">
+                    <p style = "justify-content:end">
+                    <br>
+                        Esse projeto foi desenvolvido para fins de estudo, utilizando apenas HTML, 
+                        CSS e JavaScript puro, com foco em praticar estrutura, estilo e interatividade sem frameworks.
+                        <br>Encontrou um erro, um bug ou até mesmo uma sugestão... Entre em contato comigo!   
+                        <p style="text-align:center"><i>Instagram:</i><strong> <a href="https://www.instagram.com/wesleys.7/" target="_blank" style="all: unset; cursor: pointer;">@wesleys.7</a></strong></p>
+                    </p>
+                </div>
+                <div class="boxOptionsDelete" id="back">
+                    <div class="back">voltar</div>
+            </div>
+        `
+        homepage.appendChild(div)
+        document.querySelector('#back').addEventListener('click', () => {
+            div.remove()
+            localStorage.setItem('notificationPointAboutTF', false)
+            updateNotifications()
+            
+        })
+    themecolors.style.display = 'none'
+    
+
 })
 
-btnCloseAboutInfo.addEventListener('click', () => {
+/*btnCloseAboutInfo.addEventListener('click', () => {
     aboutinfo.style.display = 'none'
+    notificationPointAboutTF = false
+    updateNotifications()
     menuListOptions.style.display = 'none'
     overlayTransp.style.display = 'none'
+    overlay.style.display = 'none'
+})*/
+
+
+notifications.addEventListener('click', ()=> {
+
+    if(notificationPointNotificationsTF() === true) {
+        const div = document.createElement('div')
+        div.classList = 'alertModal'
+        div.innerHTML = `
+            <div class="boxDelete">
+                <div class="txtModal">
+                    <p>🎉 <strong>Uhuu! Seja muito bem-vindo(a)!</strong></p>
+                    <p style="text-align:center">
+                        Você acaba de receber acesso antecipado a versão alfa do meu projeto, e é uma honra ter você por aqui! 👊💀
+                        <br>    Obrigado de coração por estar testando a minha primeira aplicação web — Pode ter certeza que fiz tudo bem pensado e tudo com muito carinho para poder te ajudar nas suas organizações.
+                        E olha... espero que esse objetivo seja alcançado! 🫡
+                        <br>Se encontrar um bug, é só reportar!😎
+                        <br>    Agora é com você: aproveite, explore, crie listas e conte sempre com a gente! 🚀✨<br>
+                        <p><strong>Wesley Souza</strong><br><i style="font-size: 15px">developer</i></p>
+                    </p>
+                </div>
+                <div class="boxOptionsDelete" id="back">
+                    <div class="back">voltar</div>
+            </div>
+        `
+        homepage.appendChild(div)
+        document.querySelector('#back').addEventListener('click', () => {
+            div.remove()
+            localStorage.setItem('notificationPointNotificationsTF', false)
+            updateNotifications()
+            notificationPointNotifications.style.display = 'none'
+            
+        })
+    } else {
+        const div = document.createElement('div')
+        div.classList = 'alertModal'
+        div.innerHTML = `
+            <div class="boxDelete">
+                <div class="txtDelete">
+                    <p style="opacity:0.5"><i>~notificação lida~</i></p>
+                    <p>🎉 <strong>Uhuu! Seja muito bem-vindo(a)!</strong></p>
+                    <p style="text-align:center">
+                        Você acaba de receber acesso antecipado a versão alfa do meu projeto, e é uma honra ter você por aqui! 👊💀
+                        <br>    Obrigado de coração por estar testando a minha primeira aplicação web — Pode ter certeza que fiz tudo bem pensado e tudo com muito carinho para poder te ajudar nas suas organizações.
+                        E olha... espero que esse objetivo seja alcançado! 🫡
+                        <br>Se encontrar um bug, é só reportar!😎
+                        <br>    Agora é com você: aproveite, explore, crie listas e conte sempre com a gente! 🚀✨<br>
+                        
+                        <p><strong>Wesley Souza</strong><br><i style="font-size: 15px">developer</i></p>
+                    </p>
+                </div>
+                <div class="boxOptionsDelete" id="back">
+                    <div class="back">voltar</div>
+            </div>
+        `
+        homepage.appendChild(div)
+        document.querySelector('#back').addEventListener('click', () => {
+            div.remove()
+        })
+    }
 })
 
 overlay.addEventListener('click', () => {
@@ -831,6 +938,19 @@ setInterval(()=>{
     points.style.visibility = (points.style.visibility ==='hidden' ? 'visible':'hidden')
 }, 1000)
 
+function updateNotifications() {
+    if(notificationPointAboutTF() === false && notificationPointNotificationsTF() === false) {
+        notificationPointMenu.style.display = 'none'
+    }
+
+    if(notificationPointAboutTF() === false) {
+        notificationPointAbout.style.display = 'none'
+    }
+    if(notificationPointNotificationsTF() === false) {
+        notificationPointNotifications.style.display = 'none'
+    }
+}
+
 
 function addItemFast() {
     msgAlert.style.display = 'none'
@@ -854,7 +974,7 @@ function renderItensLength() {
     if (contFast < 1 && arrayItensChecked.length == 0) {
         const div = document.createElement('div')
         div.classList = 'msgAlert'
-        div.innerHTML = `<p><i>Nenhum item foi adicionado ainda. Preencha o campo de texto e clique em '+' para começar sua lista, vamos lá!!  =D </i></p>`
+        div.innerHTML = `<p><i>Sua lista está vazia. 🫠</i></p>`
         listArea.appendChild(div)
     }
 }
@@ -917,7 +1037,8 @@ function renderList () {
 }
 
 function renderListChecked() {
-    arrayItensChecked.forEach((itemvalue, i) => {
+    const reversedArrayItensChecked = [...arrayItensChecked].reverse()
+    reversedArrayItensChecked.forEach((itemvalue, i) => {
             const item = document.createElement('div')
             item.className = 'boxListArea'
             item.id = `item${i}`
@@ -939,7 +1060,8 @@ function renderListChecked() {
 }
 
 function renderListProblem() {
-    arrayItensProblem.forEach((itemValue, i) => {
+    const reversedArrayItensProblem = [...arrayItensProblem].reverse()
+    reversedArrayItensProblem.forEach((itemValue, i) => {
         const item = document.createElement('div')
         item.className = 'boxListArea'
         item.id = `item${i}`
@@ -1031,6 +1153,14 @@ function renderFavoriteList () {
             arrayFavoriteItensFL.splice(arrayFavoriteItensFL.indexOf('activeSession'),1)
         }
         
+        if(arrayFavoriteItensFL.includes('notificationPointAboutTF')) {
+            arrayFavoriteItensFL.splice(arrayFavoriteItensFL.indexOf('notificationPointAboutTF'),1)
+        }
+        
+        if(arrayFavoriteItensFL.includes('notificationPointNotificationsTF')) {
+            arrayFavoriteItensFL.splice(arrayFavoriteItensFL.indexOf('notificationPointNotificationsTF'),1)
+        }
+
         arrayFavoriteItensFL.forEach((item, i) => {
             let day = savedInfo[i].day
             let month = savedInfo[i].month
