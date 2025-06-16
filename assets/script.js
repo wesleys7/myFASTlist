@@ -101,6 +101,24 @@ btnCloseMenuListOptions.addEventListener('click', () => {
     themecolors.style.display = 'none'
 })
 
+
+overlay.addEventListener('click', (e) => {
+    if(e.target === overlay ) {
+        menuListOptions.style.display = 'none'
+        overlayTransp.style.display = 'none'
+        overlay.style.display = 'none'
+        themecolors.style.display = 'none'
+    } 
+})
+
+overlayTransp.addEventListener('click', (e) => {
+    if(e.target === overlayTransp) {
+        menuListOptions.style.display = 'none'
+        overlayTransp.style.display = 'none'
+        overlay.style.display = 'none'
+        themecolors.style.display = 'none'
+    }
+})
 theme.addEventListener('click', () => {
     themecolors.style.display = themecolors.style.display === 'flex' ? 'none':'flex'
     aboutinfo.style.display = 'none'
@@ -450,6 +468,7 @@ listArea.addEventListener('click', (e) => {
 
         const div = e.target.closest('.boxListArea')
         const text = div.querySelector('.itemtxt').textContent.trim()
+        const bg = div.querySelector('.listItem')
         const index = arrayItens.indexOf(text)
         arrayItensChecked.push(arrayItens[index])
         arrayItens.splice(index, 1)
@@ -713,8 +732,8 @@ btnSave.addEventListener('click', () => {
                     })
 
                     let now = new Date
-                    let day = (now.getDay() +1)
-                    let month = (now.getMonth() + 1)
+                    let day = now.getDate()
+                    let month = now.getMonth() +1
                     let year = now.getFullYear()
 
                     let dataListSave = {
@@ -730,7 +749,6 @@ btnSave.addEventListener('click', () => {
                     
 
                     renderFavoriteList()
-                    const listSaved = JSON.parse(localStorage.getItem(nameList))
                     }
             })
     }
@@ -1159,7 +1177,8 @@ function renderFavoriteList () {
             arrayFavoriteItensFL.splice(arrayFavoriteItensFL.indexOf('notificationPointNotificationsTF'),1)
         }
 
-        arrayFavoriteItensFL.forEach((item, i) => {
+        const reversedArrayFavoriteItensFL = [...arrayFavoriteItensFL].reverse()
+        reversedArrayFavoriteItensFL.forEach((item, i) => {
             let day = savedInfo[i].day
             let month = savedInfo[i].month
             let year = savedInfo[i].year
@@ -1187,6 +1206,7 @@ function renderFavoriteList () {
         
     }
     
+    
 }
 
 function automaticSave() {
@@ -1207,7 +1227,7 @@ function automaticSave() {
 
 
 
-async function backupCheck() {
+function backupCheck() {
     const securityBackup = JSON.parse(localStorage.getItem('securityBackup'));
 
 
